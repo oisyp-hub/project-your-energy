@@ -1180,3 +1180,8 @@
   margin-right: auto !important;
   box-sizing: border-box;
 }
+/* move ONLY exercises section a bit left */
+.exercises .exercises__container{
+  transform: translateX(-40px);
+}
+
