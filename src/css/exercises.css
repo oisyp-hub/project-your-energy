@@ -1159,29 +1159,4 @@
     min-height: 141px;
   }
 }
-@media (min-width: 1440px) {
-  .container {
-    max-width: 1440px;
-    padding: 0 32px;
-    margin: 0 auto;
-  }
-}
-/* ===== FIX container centering ===== */
-.container {
-  width: 100%;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  box-sizing: border-box;
-}
-
-.container {
-  width: 100%;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  box-sizing: border-box;
-}
-/* move ONLY exercises section a bit left */
-.exercises .exercises__container{
-  transform: translateX(-40px);
-}
 
