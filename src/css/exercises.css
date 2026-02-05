@@ -1155,16 +1155,3 @@
     overflow: hidden;
   }
 }
-@media (min-width: 1440px) {
-  .exercise-cards {
-    grid-template-columns: repeat(2, 442px);
-    column-gap: 20px;
-    row-gap: 32px;
-    justify-content: start; /* щоб не центрувало */
-  }
-
-  .exercise-card {
-    height: 141px; /* не min-height */
-    overflow: hidden;
-  }
-}
