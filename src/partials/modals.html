@@ -1,0 +1,29 @@
+<!-- Exercise Modal -->
+<div class="backdrop is-hidden" id="exercise-modal" aria-hidden="true">
+  <div class="modal modal-exercise" role="dialog" aria-modal="true">
+    <button class="modal__close" type="button" data-close-modal>✕</button>
+    <div class="modal-exercise__content" id="exercise-modal-content"></div>
+  </div>
+</div>
+
+<!-- Rating Modal -->
+<div class="backdrop is-hidden" id="rating-modal" aria-hidden="true">
+  <div class="modal modal-rating" role="dialog" aria-modal="true">
+    <button class="modal__close" type="button" data-close-rating>✕</button>
+
+    <div class="rating-modal__content">
+      <p class="rating-modal__label">Rating</p>
+
+      <div class="rating-modal__row">
+        <span class="rating-modal__value" id="rating-value">0.0</span>
+        <div class="rating-modal__stars" id="rating-stars"></div>
+      </div>
+
+      <form class="rating-modal__form" id="rating-form">
+        <input class="rating-modal__input" type="email" placeholder="Email" required />
+        <textarea class="rating-modal__textarea" placeholder="Your comment"></textarea>
+        <button class="btn btn--light" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,691 @@
+/* ===== HERO ===== */
+.hero {
+  background: #F4F4F4;
+  padding: 56px 0 40px;
+}
+
+/* глобальний container (залишай, якщо потрібен для інших секцій) */
+.container {
+  background: #F4F4F4;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+/* ✅ HERO GRID */
+.hero__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #F4F4F4;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  column-gap: 24px;
+  align-items: start;
+
+  padding-left: 0;   /* ✅ було 32px */
+  padding-right: 0;  /* ✅ було 32px */
+  box-sizing: border-box;
+}
+
+/* LEFT */
+.hero__content {
+  max-width: 720px;
+}
+
+/* TITLE */
+.hero__title {
+  margin: 0;
+
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  column-gap: 12px;
+  align-items: start;
+
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-size: 74px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #111;
+}
+
+.hero__sun-wrap {
+  margin-top: 6px;
+}
+
+.hero__sun {
+  width:59px;
+  height: 59px;
+  display: block;
+}
+
+.hero__title-text {
+  display: block;
+}
+
+.hero__italic {
+  font-style: italic;
+}
+
+/* TEXT */
+.hero__text {
+  margin: 16px 0 0;
+  max-width: 528px;
+
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #242424;
+}
+
+/* RIGHT CARD */
+.hero__card {
+  width: 200px;
+  justify-self: end;
+  align-self: start;
+  margin-top: 6px;
+  display: grid;
+  gap: 12px;
+  justify-items: end; /* ✅ посуне img і теги вправо */
+}
+
+.hero__card img {
+  width: 168px;
+  height: 100px;
+  border-radius: 20px;
+  object-fit: cover;
+  display: block;
+}
+
+/* TAGS (2x2) */
+.hero__card-tags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ✅ рівні кнопки */
+  gap: 12px 16px;
+  justify-content: end;
+}
+
+.hero__card-tags li {
+  padding: 6px 12px;
+  border: 1px solid #111;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* BIG IMAGE */
+.hero__bottom-image {
+  max-width: 1440px;
+  margin: 24px auto 0;
+
+  padding: 0; /* ✅ було 0 6px */
+  box-sizing: border-box;
+}
+
+.hero__bottom-image img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 60px;
+  display: block;
+}
+
+/* TABLET */
+@media (max-width: 1439px) {
+  .hero__title {
+    font-size: 64px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+  .hero__container {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+
+    padding-left: 0;   /* ✅ було 20px */
+    padding-right: 0;  /* ✅ було 20px */
+  }
+
+  .hero__card {
+    justify-self: start;
+  }
+
+  .hero__bottom-image {
+    padding: 0; /* ✅ було 0 20px */
+  }
+
+  .hero__bottom-image img {
+    height: 260px;
+    border-radius: 40px;
+  }
+}
+.hero__text{
+  line-height: 1.5;
+  /* 3 рядки резерв */
+  min-height: calc(1.5em * 3);
+
+  /* щоб довгий текст не ріс */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.hero__card-tags{
+  /* резерв під 2 рядки тегів (підбери під себе) */
+  min-height: 52px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hero__card{
+  min-height: 240px; /* підбери під свій макет */
+}
+.hero__img-wrap{
+  aspect-ratio: 1 / 1;   /* або як у макеті */
+  width: 100%;
+}
+.hero__img-wrap img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero__img-wrap{
+  aspect-ratio: 1 / 1;   /* або як у макеті */
+  width: 100%;
+}
+.hero__img-wrap img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero__text{
+  font-size: 18px;
+  line-height: 24px;
+
+  /* ✅ резерв як у макеті */
+  min-height: 72px;
+
+  /* ✅ щоб не ріс якщо текст довший */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.category-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px; /* якщо треба */
+  aspect-ratio: 4 / 3; /* або 1/1 — під твій макет */
+}
+@media (max-width: 600px) {
+  .hero__container {
+    /* було 2 колонки -> стає 1 */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero__content {
+    /* текст зверху */
+    order: 1;
+  }
+
+  .hero__card {
+    /* картка справа -> під текст */
+    order: 2;
+    width: 100%;
+  }
+
+  /* картинка в картці */
+  .hero__card picture,
+  .hero__card img {
+    width: 100%;
+    height: 460px;        /* як на макеті */
+    object-fit: cover;
+    border-radius: 24px;  /* під свій дизайн */
+    display: block;
+  }
+
+  /* теги під картинкою */
+  .hero__card-tags {
+    order: 3;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* по центру як на макеті */
+    gap: 10px;
+
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hero__card-tags li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 10px;
+    border-radius: 999px;
+    line-height: 1;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  /* заголовок/текст — щоб не розлазились */
+  .hero__title {
+    font-size: 38px; /* під макет, якщо треба — підкрутиш */
+    line-height: 1.05;
+  }
+
+  .hero__desc {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+@media (max-width: 600px) {
+  /* 1 колонка */
+  .hero__container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* важливо: “розпаковуємо” hero__card, щоб picture і tags можна було впорядкувати */
+  .hero__card {
+    display: contents;
+  }
+
+  /* --- маленька картинка (335x54) --- */
+  .hero__card > picture {
+    order: 2;
+    width: 100%;
+    height: 54px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: block;
+  }
+
+  .hero__card > picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* --- велика картинка (335x460) --- */
+  .hero__bottom-image {
+    order: 3;
+    width: 100%;
+  }
+
+  .hero__bottom-image img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+  }
+
+  /* --- теги під великою картинкою --- */
+  .hero__card-tags {
+    order: 4;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hero__card-tags li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 10px;
+    border-radius: 999px;
+    line-height: 1;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  /* трохи піджати заголовок/опис під мобілку */
+  .hero__title {
+    font-size: 38px;
+    line-height: 1.05;
+  }
+
+  .hero__desc {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+@media (max-width: 600px) {
+  /* hero в одну колонку */
+  .hero__container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* щоб можна було керувати порядком елементів (tags/картинка) */
+  .hero__card {
+    display: contents;
+  }
+
+  /* ❌ прибираємо “ноги” повністю */
+  .hero__card > picture {
+    display: none !important;
+  }
+
+  /* порядок як у макеті: текст -> велика картинка -> теги */
+  .hero__content { order: 1; }
+
+  .hero__bottom-image { order: 2; }
+
+  .hero__card-tags {
+    order: 3;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    justify-content: center; /* або flex-start — якщо треба зліва */
+  }
+
+  .hero__bottom-image img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+  }
+}
+@media (max-width: 600px) {
+  /* 335px контент по центру */
+  .hero__container {
+    max-width: 335px;
+    margin: 0 auto;      /* центрує блок */
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* текст як у макеті — ліворуч */
+  .hero__content,
+  .hero__title,
+  .hero__desc {
+    text-align: left;
+  }
+
+  /* сонце щоб не “висіло” */
+  .hero__sun {
+    margin-right: 8px;
+  }
+
+  /* велика картинка */
+  .hero__bottom-image img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+  }
+
+  /* теги під картинкою */
+  .hero__card-tags {
+    max-width: 335px;
+    margin: 12px auto 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* як у макеті */
+    gap: 10px;
+  }
+}
+@media (max-width: 600px) {
+  /* блок hero по центру, але текст всередині зліва */
+  .hero__container {
+    max-width: 335px;
+    margin: 0 auto;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    align-items: stretch;     /* НЕ center */
+    text-align: left;         /* НЕ center */
+  }
+
+  /* явно: текст зліва */
+  .hero__content,
+  .hero__title,
+  .hero__desc {
+    text-align: left;
+  }
+
+  /* якщо заголовок з іконкою в одному рядку — не центруй */
+  .hero__title-wrap,
+  .hero__title-row {
+    justify-content: flex-start;
+  }
+
+  /* сонце — щоб було зліва біля тексту */
+  .hero__sun {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  /* теги (у макеті вони по центру) */
+  .hero__card-tags {
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .hero__card-tags li {
+    padding: 6px 12px;
+    border-radius: 999px;
+    line-height: 1;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  /* велика картинка */
+  .hero__bottom-image img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+  }
+}
+@media (max-width: 600px) {
+  .hero__container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* РОЗПАКОВУЄМО: діти .hero__card стають “наче” прямими дітьми .hero__container */
+  .hero__card {
+    display: contents;
+  }
+
+  /* маленьку картинку (якщо вона є) прибираємо */
+  .hero__card > picture {
+    display: none !important;
+  }
+
+  /* Порядок: текст -> велика картинка -> теги */
+  .hero__content {
+    order: 1;
+  }
+
+  .hero__bottom-image {
+    order: 2;
+    width: 100%;
+  }
+
+  .hero__bottom-image img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+  }
+
+  .hero__card-tags {
+    order: 3;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .hero__card-tags li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 12px;
+    border-radius: 999px;
+    line-height: 1;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+}
+@media (max-width: 600px) {
+  /* 1) примусово робимо контейнер flex, щоб order працював */
+  .hero .hero__container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* 2) “розпаковуємо” .hero__card (щоб ul.hero__card-tags став на рівень контейнера) */
+  .hero .hero__card {
+    display: contents !important;
+  }
+
+  /* 3) прибираємо маленьку картинку з .hero__card (ноги) */
+  .hero .hero__card > picture {
+    display: none !important;
+  }
+
+  /* 4) порядок: контент -> велика картинка -> теги */
+  .hero .hero__content {
+    order: 1 !important;
+  }
+
+  .hero .hero__bottom-image {
+    order: 2 !important;
+    width: 100% !important;
+  }
+
+  .hero .hero__bottom-image img {
+    width: 100% !important;
+    height: 460px !important;
+    object-fit: cover !important;
+    border-radius: 24px !important;
+    display: block !important;
+  }
+
+  .hero ul.hero__card-tags {
+    order: 3 !important;
+
+    margin: 12px 0 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+}
+@media (max-width: 600px) {
+  /* 1) примусово робимо контейнер flex, щоб order працював */
+  .hero .hero__container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* 2) “розпаковуємо” .hero__card (щоб ul.hero__card-tags став на рівень контейнера) */
+  .hero .hero__card {
+    display: contents !important;
+  }
+
+  /* 3) прибираємо маленьку картинку з .hero__card (ноги) */
+  .hero .hero__card > picture {
+    display: none !important;
+  }
+
+  /* 4) порядок: контент -> велика картинка -> теги */
+  .hero .hero__content {
+    order: 1 !important;
+  }
+
+  .hero .hero__bottom-image {
+    order: 2 !important;
+    width: 100% !important;
+  }
+
+  .hero .hero__bottom-image img {
+    width: 100% !important;
+    height: 460px !important;
+    object-fit: cover !important;
+    border-radius: 24px !important;
+    display: block !important;
+  }
+
+  .hero ul.hero__card-tags {
+    order: 3 !important;
+
+    margin: 12px 0 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+}

@@ -5,13 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/vanilla-app-template/",
-    "preview": "vite preview"
+    "build": "vite build --base=/project-your-energy/",
+    "preview": "vite preview",
+    "img:opt": "node script/optimize-images.mjs"
+
   },
   "devDependencies": {
+    "fast-glob": "^3.3.3",
     "glob": "^11.0.0",
     "postcss": "^8.4.41",
     "postcss-sort-media-queries": "^5.2.0",
+    "sharp": "^0.34.5",
     "vite": "^5.4.6"
   },
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",

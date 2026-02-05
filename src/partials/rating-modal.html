@@ -1,0 +1,39 @@
+<!-- ===== RATING MODAL ===== -->
+<div class="backdrop is-hidden" id="rating-modal" aria-hidden="true">
+  <div class="modal modal-rating" role="dialog" aria-modal="true" aria-label="Rate exercise">
+    <button class="modal__close" type="button" data-close-rating aria-label="Close">✕</button>
+
+    <div class="rating-modal__content">
+      <p class="rating-modal__label">Rating</p>
+
+      <div class="rating-modal__row">
+        <span class="rating-modal__value" id="rating-value">0.0</span>
+        <div class="rating-modal__stars" id="rating-stars" aria-label="Choose rating"></div>
+      </div>
+
+      <form class="rating-modal__form" id="rating-form" novalidate>
+        <label class="rating-modal__field">
+          <input
+            class="rating-modal__input"
+            type="email"
+            name="email"
+            placeholder="Email"
+            autocomplete="email"
+            required
+          />
+        </label>
+
+        <label class="rating-modal__field">
+          <textarea
+            class="rating-modal__textarea"
+            name="comment"
+            placeholder="Your comment"
+            rows="4"
+          ></textarea>
+        </label>
+
+        <button class="btn btn--light rating-modal__send" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</div>

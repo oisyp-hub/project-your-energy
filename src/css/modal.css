@@ -1,0 +1,688 @@
+/* =========================
+   EXERCISE MODAL — FIGMA MATCH (Air bake)
+   put this at the VERY END of css
+   ========================= */
+
+/* modal container */
+.modal.modal-exercise{
+  width: 708px;
+  height: 486px;
+  padding: 24px;
+  border-radius: 20px;
+  background: #2b2b2b;
+  overflow: hidden;
+}
+
+/* grid layout */
+.modal-exercise__content{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  column-gap: 28px;
+  align-items: start;
+}
+
+/* LEFT CARD (as in макет) */
+.modal-exercise__media{
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  width: 270;
+  height: 259px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 6px; /* легкий відступ від верхнього краю як у макеті */
+}
+
+/* image inside card */
+.modal-exercise__img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain; /* як у макеті — не ріже, а вміщує */
+}
+
+/* RIGHT COLUMN */
+.modal-exercise__info{
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 6px;
+}
+
+/* title */
+.modal-exercise__title{
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* rating row (number + stars) */
+.modal-exercise__rating-row{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  margin-bottom: 12px;
+}
+
+.modal-exercise__rating-num{
+  font-size: 14px;
+  color: rgba(255,255,255,0.82);
+  flex: 0 0 auto;
+}
+
+.modal-exercise__stars{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.modal-exercise__star{
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* divider line like макет */
+.modal-exercise__divider{
+  height: 1px;
+  background: rgba(255,255,255,0.14);
+  margin: 12px 0;
+}
+
+/* TAGS row — one line, exact vibe */
+.modal-exercise__tags{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 18px;
+
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: 0;
+
+  margin: 0; /* важливо, бо divider вже дає відступи */
+}
+
+.modal-exercise__tags span{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.modal-exercise__tags b{
+  color: rgba(255,255,255,0.92);
+  font-weight: 600;
+}
+
+/* щоб “Popular 22225” НЕ вилізав — стискаємо тільки останній */
+.modal-exercise__tags span:last-child{
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* calories line */
+.modal-exercise__calories{
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: rgba(255,255,255,0.80);
+}
+
+.modal-exercise__calories b{
+  color: #fff;
+  font-weight: 600;
+}
+
+/* description */
+.modal-exercise__desc{
+  margin: 0;
+  max-width: 420px;
+
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.65);
+}
+
+/* ACTIONS bottom center */
+.modal-exercise__actions{
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding-bottom: 6px;
+}
+
+.modal-exercise__actions .btn{
+  height: 44px;
+  min-width: 170px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.btn--light{
+  background: #fff;
+  color: #111;
+  border: none;
+}
+
+.btn--outline{
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.60);
+}
+
+/* Close icon position like макет */
+.modal__close{
+  top: 16px;
+  right: 16px;
+}
+
+/* responsive */
+@media (max-width: 768px){
+  .modal.modal-exercise{
+    height: auto;
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+  }
+
+  .modal-exercise__content{
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+
+  .modal-exercise__media{
+    width: 100%;
+    height: 240px;
+    margin-top: 0;
+  }
+
+  .modal-exercise__actions{
+    justify-content: center;
+  }
+}
+#exercise-modal.is-hidden {
+  display: none !important;
+}
+#rating-modal.is-hidden {
+  display: none !important;
+}
+/* ===== MODALS ===== */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Ховаємо гарантовано */
+.backdrop.is-hidden,
+#exercise-modal.is-hidden,
+#rating-modal.is-hidden {
+  display: none !important;
+}
+
+/* порядок по z-index */
+#exercise-modal { z-index: 9000; }
+#rating-modal  { z-index: 10000; }
+
+/* bigger + readable text in modal (right column) */
+.modal-exercise__title{
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.modal-exercise__rating-num{
+  font-size: 14px;
+}
+
+.modal-exercise__tags{
+  font-size: 14px;                 /* було 12px */
+  color: rgba(255,255,255,0.65);   /* було 0.55 -> надто блідо */
+}
+
+.modal-exercise__calories{
+  font-size: 14px;                 /* було 13px */
+  color: rgba(255,255,255,0.80);
+}
+
+.modal-exercise__desc{
+  font-size: 14px;                 /* у Figma зазвичай 14 */
+  line-height: 1.6;
+  color: rgba(255,255,255,0.70);   /* було 0.65 -> трохи краще читається */
+}
+/* ===== FIX tags layout (Target / Body Part / Equipment / Popular) ===== */
+
+.modal-exercise__tags{
+  display: grid;
+  grid-template-columns: repeat(4, auto); /* 4 колонки */
+  column-gap: 24px;
+  row-gap: 4px;
+
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+}
+
+/* кожен тег = колонка */
+.modal-exercise__tags span{
+  display: flex;
+  flex-direction: column;   /* 🔥 label над value */
+  gap: 4px;
+  min-width: 0;
+}
+
+/* value */
+.modal-exercise__tags b{
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+}
+/* tags row: 4 рівні колонки */
+.modal-exercise__tags{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 🔥 рівні колонки */
+  column-gap: 24px;
+  row-gap: 4px;
+
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+}
+
+/* кожна колонка: label зверху, value знизу */
+.modal-exercise__tags span{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* value */
+.modal-exercise__tags b{
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+  white-space: nowrap;       /* щоб "upper legs" не ламалось */
+}
+/* =========================================================
+   DESKTOP: exercise cards size + gaps (Figma)
+   ========================================================= */
+@media (min-width: 1440px) {
+  /* 2 колонки по 442px (як ти просив 442x141) */
+  .exercise-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 442px);
+    column-gap: 20px; /* горизонтальний як був */
+    row-gap: 32px;    /* 🔥 вертикальний 32 */
+    justify-content: start;
+  }
+
+  .exercise-card {
+    min-height: 141px; /* висота як у макеті */
+  }
+}
+
+/* =========================================================
+   MODALS (backdrops + порядок)
+   ========================================================= */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* гарантовано ховаємо */
+.backdrop.is-hidden,
+#exercise-modal.is-hidden,
+#rating-modal.is-hidden {
+  display: none !important;
+}
+
+/* порядок */
+#exercise-modal { z-index: 9000; }
+#rating-modal  { z-index: 10000; }
+
+/* =========================================================
+   EXERCISE MODAL — точ-в-точ під макет (Air bake)
+   (працює з твоєю розміткою .modal.modal-exercise і
+    #exercise-modal-content.modal-exercise__content)
+   ========================================================= */
+
+/* контейнер модалки */
+.modal.modal-exercise {
+  width: 708px;
+  height: 486px;
+  padding: 24px;
+  border-radius: 20px;
+  background: #2b2b2b;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* сітка всередині */
+.modal-exercise__content {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  column-gap: 28px;
+  align-items: start;
+}
+
+/* ліва картка з фото */
+.modal-exercise__media {
+  width: 270px;
+  height: 259px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #fff;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 6px;
+}
+
+.modal-exercise__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* права колонка */
+.modal-exercise__info {
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 6px;
+}
+
+/* заголовок */
+.modal-exercise__title {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #fff;
+}
+
+/* рейтинг */
+.modal-exercise__rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.modal-exercise__rating-num {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.82);
+  flex: 0 0 auto;
+}
+
+.modal-exercise__stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.modal-exercise__star {
+  width: 14px;
+  height: 14px;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* розділювачі */
+.modal-exercise__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  margin: 12px 0;
+}
+
+/* 🔥 TAGS: 4 рівні колонки, label зверху, value знизу */
+.modal-exercise__tags {
+  margin: 0; /* divider вже дає відступи */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 6px;
+
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.modal-exercise__tags .tag {
+  /* працює з твоїм HTML: "Target <b>Abs</b>" */
+  display: grid;
+  grid-template-rows: auto auto;
+  row-gap: 4px;
+  min-width: 0;
+}
+
+.modal-exercise__tags .tag b {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* calories */
+.modal-exercise__calories {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.80);
+}
+
+.modal-exercise__calories b {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* опис */
+.modal-exercise__desc {
+  margin: 0;
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.70);
+}
+
+/* кнопки знизу */
+.modal-exercise__actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding-bottom: 6px;
+}
+
+.modal-exercise__actions .btn {
+  height: 44px;
+  min-width: 170px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn--light {
+  background: #fff;
+  color: #111;
+  border: none;
+}
+
+.btn--outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.60);
+}
+
+/* хрестик */
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.85);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* адаптив */
+@media (max-width: 768px) {
+  .modal.modal-exercise {
+    width: min(708px, 100%);
+    height: auto;
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+  }
+
+  .modal-exercise__content {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+
+  .modal-exercise__media {
+    width: 100%;
+    height: 240px;
+    margin-top: 0;
+  }
+}
+
+/* =========================================================
+   RATING MODAL — нормальний CSS (430x412 як у тебе на скріні)
+   Працює якщо всередині #rating-modal є .modal (або .modal-rating)
+   ========================================================= */
+#rating-modal .modal,
+.modal.modal-rating {
+  width: 430px;
+  height: 412px;
+  padding: 24px;
+  border-radius: 20px;
+  background: #2b2b2b;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* верх */
+#rating-modal .modal__close,
+.modal.modal-rating .modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+/* текст */
+#rating-modal .rating-title {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+}
+
+#rating-modal #rating-value {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+}
+
+/* ⭐ зірки */
+#rating-stars {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 6px 0 14px;
+}
+
+.rating-star-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.rating-star {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* поля */
+#rating-form {
+  display: grid;
+  gap: 14px;
+}
+
+#rating-form input,
+#rating-form textarea {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: transparent;
+  color: #fff;
+  outline: none;
+  padding: 14px 16px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+#rating-form textarea {
+  border-radius: 16px;
+  min-height: 92px;
+  resize: none;
+}
+
+/* кнопка Send */
+#rating-form button[type="submit"] {
+  height: 48px;
+  border-radius: 999px;
+  border: none;
+  background: #fff;
+  color: #111;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* mobile */
+@media (max-width: 480px) {
+  #rating-modal .modal,
+  .modal.modal-rating {
+    width: 100%;
+    height: auto;
+  }
+}

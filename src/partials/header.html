@@ -1,19 +1,105 @@
 <header class="header">
-  <div class="container">
-    <nav class="nav">
-      <a class="nav-logo" href="./index.html" aria-label="Site logo">
-        <svg class="nav-logo-icon" width="100" height="30">
-          <use href="{=$icon-path}"></use>
-        </svg>
-      </a>
-      <ul class="nav-list">
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-act}" href="./page-2.html">Page 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-curr}" href="./page-3.html">Page 3</a>
-        </li>
-      </ul>
-    </nav>
+  <div class="header-left">
+    <a href="./index.html" class="logo-link">
+      <picture>
+        <source type="image/avif" srcset="img/logo.avif" />
+        <source type="image/webp" srcset="img/logo.webp" />
+        <img
+          src="img/logo.png"
+          alt="Your Energy logo"
+          width="120"
+          height="24"
+          decoding="async"
+          loading="eager"
+        />
+      </picture>
+    </a>
+  </div>
+
+  <nav class="header-center">
+    <a class="nav-item" href="./index.html" data-nav="home">Home</a>
+    <a class="nav-item" href="./page-2.html" data-nav="favorites">Favorites</a>
+  </nav>
+
+  <div class="header-right">
+    <a class="social-btn" href="#" aria-label="Facebook">
+      <picture>
+        <source type="image/avif" srcset="img/fb.avif" />
+        <source type="image/webp" srcset="img/fb.webp" />
+        <img
+          src="img/fb.png"
+          alt=""
+          width="24"
+          height="24"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    </a>
+
+    <a class="social-btn" href="#" aria-label="Instagram">
+      <picture>
+        <source type="image/avif" srcset="img/ins.avif" />
+        <source type="image/webp" srcset="img/ins.webp" />
+        <img
+          src="img/ins.png"
+          alt=""
+          width="24"
+          height="24"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    </a>
+
+    <a class="social-btn" href="#" aria-label="YouTube">
+      <picture>
+        <source type="image/avif" srcset="img/you.avif" />
+        <source type="image/webp" srcset="img/you.webp" />
+        <img
+          src="img/you.png"
+          alt=""
+          width="24"
+          height="24"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    </a>
+
+    <!-- ✅ Burger button (mobile) -->
+    <button class="burger" type="button" aria-label="Menu" data-menu-open>
+      <svg class="burger__icon" width="32" height="24" viewBox="0 0 32 24" aria-hidden="true">
+        <rect x="0" y="2"  width="32" height="3" rx="1.5"></rect>
+        <rect x="0" y="10.5" width="32" height="3" rx="1.5"></rect>
+        <rect x="0" y="19" width="32" height="3" rx="1.5"></rect>
+      </svg>
+    </button>
+
   </div>
 </header>
+<div class="mobile-menu" data-mobile-menu aria-hidden="true">
+  <div class="mobile-menu__backdrop" data-menu-close></div>
+
+  <aside class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <button class="mobile-menu__close" type="button" aria-label="Close menu" data-menu-close>✕</button>
+
+    <nav class="mobile-menu__nav">
+      <a class="mobile-menu__link" href="./index.html">Home</a>
+      <a class="mobile-menu__link" href="./page-2.html">Favorites</a>
+    </nav>
+
+    <div class="mobile-menu__social">
+      <a class="mobile-menu__social-btn" href="#" aria-label="Facebook">
+        <img src="img/iconwh1.png" alt="" width="24" height="24">
+      </a>
+      <a class="mobile-menu__social-btn" href="#" aria-label="Instagram">
+        <img src="img/iconwh2.png" alt="" width="24" height="24">
+      </a>
+      <a class="mobile-menu__social-btn" href="#" aria-label="YouTube">
+        <img src="img/iconwh3.png" alt="" width="24" height="24">
+      </a>
+    </div>
+  </aside>
+</div>
+

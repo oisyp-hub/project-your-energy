@@ -1,0 +1,1522 @@
+/* =========================
+   FAVORITES PAGE (FIGMA)
+   ========================= */
+
+.favorites-page {
+  padding: 32px 0 80px;
+}
+
+/* контейнер як у макеті */
+.favorites-page .container {
+  max-width: 1440px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.favorites-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+
+/* ===== MAIN GRID ===== */
+.favorites-layout {
+  display: grid;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Desktop: 2 колонки */
+@media (min-width: 1440px) {
+  .favorites-layout {
+    grid-template-columns: 444px 1fr;
+  }
+}
+
+/* ===== LEFT COLUMN ===== */
+.favorites-left {
+  display: grid;
+  gap: 20px;
+}
+
+/* Quote card */
+.favorites-left .quote-card {
+  background: #242424;
+  color: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  min-height: 220px;
+}
+
+/* нижній ряд: 110 min + фото (як на макеті — 2 в ряд) */
+.favorites-left-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Stats card */
+.stats-card {
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 141px;
+}
+
+.stats-time {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.stats-label {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(17, 17, 17, 0.55);
+}
+
+/* Image card */
+.image-card {
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 141px;
+}
+
+.image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== RIGHT COLUMN ===== */
+.favorites-right {
+  min-width: 0;
+}
+
+/* список вправ 2 колонки */
+.favorites-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* ✅ як у макеті: скрол в правій колонці, щоб футер не підскакував */
+@media (min-width: 1440px) {
+  .favorites-list {
+    max-height: 520px;     /* підбери під свій хедер/відступи */
+    overflow: auto;
+    padding-right: 6px;    /* щоб скрол не “з’їдав” контент */
+  }
+}
+
+/* ===== exercise card (правий список) ===== */
+.fav-exercise {
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px 18px;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  display: grid;
+  gap: 10px;
+}
+
+.fav-exercise__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.fav-exercise__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #111;
+  line-height: 1;
+}
+
+.fav-exercise__start {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #111;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+
+.fav-exercise__start:hover,
+.fav-exercise__start:focus {
+  background: rgba(17, 17, 17, 0.06);
+  outline: none;
+}
+
+.fav-exercise__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #111;
+}
+
+.fav-exercise__meta {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(17, 17, 17, 0.55);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.fav-exercise__meta b {
+  color: rgba(17, 17, 17, 0.8);
+  font-weight: 600;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1439px) {
+  .favorites-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .favorites-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .favorites-left-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+.btn.is-active {
+  background: #111;
+  color: #fff;
+}
+/* =========================
+   EXERCISE MODAL — SINGLE SOURCE OF TRUTH
+   put this at the VERY END of ALL css
+   ========================= */
+
+/* backdrop */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.backdrop.is-hidden,
+#exercise-modal.is-hidden,
+#rating-modal.is-hidden {
+  display: none !important;
+}
+
+/* порядок по z-index */
+#exercise-modal { z-index: 9000; }
+#rating-modal  { z-index: 10000; }
+
+/* modal container */
+.modal.modal-exercise{
+  position: relative; /* важливо для .modal__close */
+  width: 708px;
+  height: 486px;
+  max-width: calc(100% - 40px);
+  max-height: calc(100vh - 40px);
+
+  padding: 24px;
+  border-radius: 20px;
+  background: #2b2b2b;
+  overflow: hidden;
+}
+
+/* grid layout */
+.modal-exercise__content{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  column-gap: 28px;
+  align-items: start;
+}
+
+/* LEFT CARD */
+.modal-exercise__media{
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;;
+  height: 259px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 6px; /* легкий відступ від верхнього краю як у макеті */
+}
+
+/* image inside card */
+.modal-exercise__img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* RIGHT COLUMN */
+.modal-exercise__info{
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 6px;
+}
+
+/* title */
+.modal-exercise__title{
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* rating row */
+.modal-exercise__rating-row{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  margin-bottom: 12px;
+}
+
+.modal-exercise__rating-num{
+  font-size: 14px;
+  color: rgba(255,255,255,0.82);
+}
+
+.modal-exercise__stars{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.modal-exercise__star{
+  width: 14px;
+  height: 14px;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* divider */
+.modal-exercise__divider{
+  height: 1px;
+  background: rgba(255,255,255,0.14);
+  margin: 12px 0;
+}
+
+/* tags */
+.modal-exercise__tags{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 18px;
+
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: 0;
+  margin: 0;
+}
+
+.modal-exercise__tags span{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.modal-exercise__tags b{
+  color: rgba(255,255,255,0.92);
+  font-weight: 600;
+}
+
+.modal-exercise__tags span:last-child{
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* calories */
+.modal-exercise__calories{
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: rgba(255,255,255,0.80);
+}
+
+.modal-exercise__calories b{
+  color: #fff;
+  font-weight: 600;
+}
+
+/* description */
+.modal-exercise__desc{
+  margin: 0;
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.65);
+}
+
+/* actions */
+.modal-exercise__actions{
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding-bottom: 6px;
+}
+
+.modal-exercise__actions .btn{
+  height: 44px;
+  min-width: 170px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.btn--light{
+  background: #fff;
+  color: #111;
+  border: none;
+}
+
+.btn--outline{
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.60);
+}
+
+/* close */
+.modal__close{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+/* responsive */
+@media (max-width: 768px){
+  .modal.modal-exercise{
+    height: auto;
+    overflow: auto;
+  }
+  .modal-exercise__content{
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+  }
+  .modal-exercise__content{
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+
+  .modal-exercise__media{
+    width: 270px;   /* ← ОЦЕ КЛЮЧ */
+    height: 259px;
+    margin-top: 0;
+  }
+}
+/* ===== Favorites: layout like Figma ===== */
+
+/* 1) Сірий фон навколо "сторінки" як у макеті */
+body {
+  background: #F4F4F4; /* як на макеті (сіра підкладка) */
+}
+
+/* 2) Робимо "білу сторінку" фіксованої ширини та не центруємо контент всередині */
+.favorites-page {
+  padding: 32px 0 80px;
+}
+
+.favorites-page .container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px; /* ← як у макеті */
+}
+
+
+/* 3) Заголовок як у макеті (не по центру) */
+.favorites-title {
+  margin: 0 0 24px;
+  text-align: left;
+}
+
+/* 4) Головна сітка: ліва колонка + права */
+.favorites-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* 5) Ліва колонка */
+.favorites-left {
+  width: 360px;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+/* 110 min + фото в ряд як у макеті */
+.favorites-left-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* 6) Права колонка (список) + скрол як у макеті */
+.favorites-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 20px;
+
+  /* скрол-панель як у макеті */
+  max-height: 520px;
+  overflow: auto;
+  padding-right: 10px;
+}
+
+/* трішки красивіший скрол (не обов'язково) */
+.favorites-list::-webkit-scrollbar { width: 6px; }
+.favorites-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.25); border-radius: 999px; }
+
+/* 7) Адаптив */
+@media (max-width: 1200px) {
+  .favorites-page .container { padding: 0 24px; }
+}
+
+@media (max-width: 1024px) {
+  .favorites-layout { grid-template-columns: 1fr; }
+  .favorites-left { width: 100%; }
+  .favorites-left-bottom { grid-template-columns: 1fr; }
+  .favorites-list { grid-template-columns: 1fr; max-height: none; overflow: visible; padding-right: 0; }
+}
+.favorites-right {
+  position: relative;
+  min-width: 0;
+  min-height: 520px; /* щоб текст було де центрувати як на макеті */
+}
+.favorites-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+@media (min-width: 1440px) {
+  .favorites-list {
+    max-height: 520px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* щоб скрол не з’їдав контент */
+    padding-right: 18px;
+
+    /* щоб при появі скролу не "смикалась" ширина */
+    scrollbar-gutter: stable;
+
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #111 transparent;
+  }
+
+  /* Chrome/Edge/Safari */
+  .favorites-list::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .favorites-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .favorites-list::-webkit-scrollbar-thumb {
+    background-color: #111;
+    border-radius: 999px;
+
+    /* робимо “палку” як на макеті */
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+}
+/* ===== Quote card (Figma-like) ===== */
+.quote-card {
+  position: relative;
+
+  background: #242424;
+  color: #fff;
+  border-radius: 20px;
+
+  padding: 24px 28px;
+  min-height: 220px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Header */
+.quote-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.quote-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+}
+
+/* Big quotes icon справа */
+.quote-card::after {
+  content: "“";
+  position: absolute;
+  top: 20px;
+  right: 24px;
+
+  font-size: 48px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Quote text */
+.quote-text {
+  margin: 0;
+
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+
+  max-width: 360px;
+}
+
+/* Author */
+.quote-author {
+  margin-top: auto;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+/* ===== Favorites empty state ===== */
+.favorites-right {
+  position: relative;
+  min-width: 0;
+  min-height: 520px; /* щоб було де центрувати текст */
+}
+
+/* за замовчуванням текст схований */
+.favorites-empty {
+  display: none;
+
+  position: absolute;
+  inset: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 0 24px;
+
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.8);
+}
+
+/* коли пусто — ховаємо список і показуємо текст */
+.favorites-right.is-empty .favorites-list {
+  display: none;
+}
+.favorites-right.is-empty .favorites-empty {
+  display: flex;
+}
+/* bigger + readable text in modal (right column) */
+.modal-exercise__title{
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.modal-exercise__rating-num{
+  font-size: 14px;
+}
+
+.modal-exercise__tags{
+  font-size: 14px;                 /* було 12px */
+  color: rgba(255,255,255,0.65);   /* було 0.55 -> надто блідо */
+}
+
+.modal-exercise__calories{
+  font-size: 14px;                 /* було 13px */
+  color: rgba(255,255,255,0.80);
+}
+
+.modal-exercise__desc{
+  font-size: 14px;                 /* у Figma зазвичай 14 */
+  line-height: 1.6;
+  color: rgba(255,255,255,0.70);   /* було 0.65 -> трохи краще читається */
+}
+/* ===== FIX tags layout (Target / Body Part / Equipment / Popular) ===== */
+
+.modal-exercise__tags{
+  display: grid;
+  grid-template-columns: repeat(4, auto); /* 4 колонки */
+  column-gap: 24px;
+  row-gap: 4px;
+
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+}
+
+/* кожен тег = колонка */
+.modal-exercise__tags span{
+  display: flex;
+  flex-direction: column;   /* 🔥 label над value */
+  gap: 4px;
+  min-width: 0;
+}
+
+/* value */
+.modal-exercise__tags b{
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+}
+/* =========================================================
+   DESKTOP: exercise cards size + gaps (Figma)
+   ========================================================= */
+@media (min-width: 1440px) {
+  /* 2 колонки по 442px (як ти просив 442x141) */
+  .exercise-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 442px);
+    column-gap: 20px; /* горизонтальний як був */
+    row-gap: 32px;    /* 🔥 вертикальний 32 */
+    justify-content: start;
+  }
+
+  .exercise-card {
+    min-height: 141px; /* висота як у макеті */
+  }
+}
+
+/* =========================================================
+   MODALS (backdrops + порядок)
+   ========================================================= */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* гарантовано ховаємо */
+.backdrop.is-hidden,
+#exercise-modal.is-hidden,
+#rating-modal.is-hidden {
+  display: none !important;
+}
+
+/* порядок */
+#exercise-modal { z-index: 9000; }
+#rating-modal  { z-index: 10000; }
+
+/* =========================================================
+   EXERCISE MODAL — точ-в-точ під макет (Air bake)
+   (працює з твоєю розміткою .modal.modal-exercise і
+    #exercise-modal-content.modal-exercise__content)
+   ========================================================= */
+
+/* контейнер модалки */
+.modal.modal-exercise {
+  width: 708px;
+  height: 486px;
+  padding: 24px;
+  border-radius: 20px;
+  background: #2b2b2b;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* сітка всередині */
+.modal-exercise__content {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  column-gap: 28px;
+  align-items: start;
+}
+
+/* ліва картка з фото */
+.modal-exercise__media {
+  width: 270px;
+  height: 259px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #fff;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 6px;
+}
+
+.modal-exercise__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* права колонка */
+.modal-exercise__info {
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 6px;
+}
+
+/* заголовок */
+.modal-exercise__title {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #fff;
+}
+
+/* рейтинг */
+.modal-exercise__rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.modal-exercise__rating-num {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.82);
+  flex: 0 0 auto;
+}
+
+.modal-exercise__stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.modal-exercise__star {
+  width: 14px;
+  height: 14px;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* розділювачі */
+.modal-exercise__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  margin: 12px 0;
+}
+
+/* 🔥 TAGS: 4 рівні колонки, label зверху, value знизу */
+.modal-exercise__tags {
+  margin: 0; /* divider вже дає відступи */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 6px;
+
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.modal-exercise__tags .tag {
+  /* працює з твоїм HTML: "Target <b>Abs</b>" */
+  display: grid;
+  grid-template-rows: auto auto;
+  row-gap: 4px;
+  min-width: 0;
+}
+
+.modal-exercise__tags .tag b {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* calories */
+.modal-exercise__calories {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.80);
+}
+
+.modal-exercise__calories b {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* опис */
+.modal-exercise__desc {
+  margin: 0;
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.70);
+}
+
+/* кнопки знизу */
+.modal-exercise__actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding-bottom: 6px;
+}
+
+.modal-exercise__actions .btn {
+  height: 44px;
+  min-width: 170px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn--light {
+  background: #fff;
+  color: #111;
+  border: none;
+}
+
+.btn--outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.60);
+}
+
+/* хрестик */
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.85);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* адаптив */
+@media (max-width: 768px) {
+  .modal.modal-exercise {
+    width: min(708px, 100%);
+    height: auto;
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+  }
+
+  .modal-exercise__content {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+
+  .modal-exercise__media {
+    width: 100%;
+    height: 240px;
+    margin-top: 0;
+  }
+}
+
+/* =========================================================
+   RATING MODAL — нормальний CSS (430x412 як у тебе на скріні)
+   Працює якщо всередині #rating-modal є .modal (або .modal-rating)
+   ========================================================= */
+#rating-modal .modal,
+.modal.modal-rating {
+  width: 430px;
+  height: 412px;
+  padding: 24px;
+  border-radius: 20px;
+  background: #2b2b2b;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* верх */
+#rating-modal .modal__close,
+.modal.modal-rating .modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+/* текст */
+#rating-modal .rating-title {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+}
+
+#rating-modal #rating-value {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+}
+
+/* ⭐ зірки */
+#rating-stars {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 6px 0 14px;
+}
+
+.rating-star-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.rating-star {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* поля */
+#rating-form {
+  display: grid;
+  gap: 14px;
+}
+
+#rating-form input,
+#rating-form textarea {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: transparent;
+  color: #fff;
+  outline: none;
+  padding: 14px 16px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+#rating-form textarea {
+  border-radius: 16px;
+  min-height: 92px;
+  resize: none;
+}
+
+/* кнопка Send */
+#rating-form button[type="submit"] {
+  height: 48px;
+  border-radius: 999px;
+  border: none;
+  background: #fff;
+  color: #111;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* mobile */
+@media (max-width: 480px) {
+  #rating-modal .modal,
+  .modal.modal-rating {
+    width: 100%;
+    height: auto;
+  }
+}
+/* ===== Favorites: TRASH button ===== */
+
+.fav-exercise__top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* кошик між бейджем і Start */
+.fav-exercise__trash {
+  margin-left: 8px;          /* відступ від WORKOUT */
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.fav-exercise__trash:hover,
+.fav-exercise__trash:focus-visible {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.fav-exercise__trash:active {
+  transform: scale(0.98);
+}
+
+.fav-exercise__trash:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.35);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.fav-exercise__trash-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* щоб Start був справа */
+.fav-exercise__start {
+  margin-left: auto;
+}
+.exercise-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #111;
+
+  white-space: nowrap; /* ✅ щоб 4.0 + ★★★ не переносились */
+}
+
+.exercise-card__star-img {
+  width: 14px;
+  height: 14px;
+  display: block;
+  object-fit: contain;
+
+  flex-shrink: 0;       /* ✅ не стискаємо зірки */
+  vertical-align: middle; /* ✅ прибирає дивний відступ по базовій лінії */
+}
+
+/* start button */
+.exercise-card__start {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #111;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+
+.exercise-card__start:hover,
+.exercise-card__start:focus {
+  background: rgba(17, 17, 17, 0.06);
+  outline: none;
+}
+
+.exercise-card__arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.exercise-card__name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.exercise-card__icon-wrap {
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  background: #111;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 28px;
+}
+
+.exercise-card__icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.exercise-card__name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #111;
+}
+
+.exercise-card__meta {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(17, 17, 17, 0.55);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.exercise-card__meta b {
+  color: rgba(17, 17, 17, 0.8);
+  font-weight: 600;
+}
+
+/* =========================
+   FIX: empty exercise head (900x0) adds margin
+   ========================= */
+.exercise-list_head:empty,
+.exercise-list__head:empty {
+  display: none;
+  margin: 0;
+}
+/* =========================
+   FIX: Favorites left bottom tiles (110 min + photo) = 239x141 like Figma
+   put at the VERY END of favorite.css
+   ========================= */
+
+@media (min-width: 1440px) {
+  .favorites-left-bottom {
+    grid-template-columns: 239px 239px; /* як у Figma */
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .stats-card,
+  .image-card {
+    width: 239px;     /* 🔥 фіксуємо ширину */
+    height: 141px;    /* 🔥 фіксуємо висоту */
+    min-height: 141px; /* можна лишити, але вже не критично */
+    border-radius: 20px;
+  }
+
+  /* stats: центруємо як в макеті */
+  .stats-card {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .stats-time {
+    margin: 0 0 6px;
+  }
+
+  .stats-label {
+    margin: 0;
+    font-size: 12px; /* у макеті виглядає менше ніж 14 */
+    color: rgba(17, 17, 17, 0.55);
+  }
+
+  /* photo: 100% cover */
+  .image-card {
+    overflow: hidden;
+  }
+
+  .image-card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover; /* ✅ already have, але зафіксували висоту */
+    object-position: center;
+  }
+}
+/* =========================
+   FIX: Left column doesn't overlap right (works on 1366 too)
+   PUT THIS AT THE VERY END of favorite.css
+   ========================= */
+
+/* desktop/tablet wide screens (1366 теж сюди попадає) */
+@media (min-width: 1024px) {
+  /* робимо нормальну ширину лівої колонки */
+  .favorites-layout {
+    grid-template-columns: 444px 1fr; /* було 360px -> через це і “налазить” */
+    align-items: start;
+  }
+
+  /* забороняємо лівій колонці вилізти за свою ширину */
+  .favorites-left {
+    width: 100%;
+    max-width: 444px;
+    overflow: hidden;
+  }
+
+  /* right column must be shrinkable */
+  .favorites-right {
+    min-width: 0;
+  }
+
+  /* щоб quote-card не мав “власної” ширини і не розтягувався */
+  .quote-card {
+    width: 100%;
+    max-width: 444px;
+    box-sizing: border-box;
+  }
+
+  /* нижній ряд (110 min + фото) — дві рівні плитки, НЕ вилазять */
+  .favorites-left-bottom {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 444px;
+  }
+
+  /* фіксуємо висоту як у Figma */
+  .stats-card,
+  .image-card {
+    height: 141px;
+    min-height: 141px;
+  }
+
+  .image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+/* =========================
+   FIX: 110 min + photo like Figma
+   (PUT AT THE END of favorite.css)
+   ========================= */
+
+@media (min-width: 1024px) {
+  /* рівні плитки як на макеті */
+  .favorites-left-bottom {
+    grid-template-columns: 239px 239px; /* як у Figma */
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .stats-card,
+  .image-card {
+    width: 239px;
+    height: 141px;
+    min-height: 141px;
+    box-sizing: border-box;
+  }
+
+  /* картинка має заповнювати блок */
+  .image-card {
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .image-card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+@media (min-width: 1024px) {
+  .favorites-layout { grid-template-columns: 498px 1fr; }
+  .favorites-left { max-width: 498px; }
+  .quote-card { max-width: 498px; }
+}
+/* ===== Favorites empty state (Figma-like) ===== */
+
+/* сама права колонка */
+.favorites-right {
+  min-width: 0;
+  min-height: 520px; /* як у макеті, щоб було де центрувати */
+}
+
+/* список як був */
+.favorites-list {
+  display: grid;
+}
+
+/* текст empty — за замовчуванням схований */
+.favorites-empty {
+  display: none;
+  margin: 0;
+
+  max-width: 520px;          /* 🔥 ключ: обмежує ширину як у макеті */
+  width: 100%;
+  text-align: center;
+
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.8);
+
+  white-space: normal;       /* 🔥 точно дозволяємо перенос */
+  word-break: normal;
+}
+
+/* коли пусто — перетворюємо праву колонку в flex-центр */
+.favorites-right.is-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ховаємо список і показуємо текст */
+.favorites-right.is-empty .favorites-list {
+  display: none;
+}
+
+.favorites-right.is-empty .favorites-empty {
+  display: block;
+}
+/* ===== EMPTY STATE (Figma center) ===== */
+.favorites-right {
+  position: relative;
+  min-width: 0;
+  min-height: 520px; /* висота як у правого блоку зі скролом */
+}
+
+/* коли пусто — робимо контейнер центрування */
+.favorites-right.is-empty {
+  display: flex;
+  align-items: center;      /* ✅ вертикально по центру */
+  justify-content: center;  /* ✅ горизонтально по центру */
+}
+
+/* список ховаємо */
+.favorites-right.is-empty .favorites-list {
+  display: none;
+}
+
+/* показуємо текст і робимо норм ширину як у макеті */
+.favorites-right.is-empty .favorites-empty {
+  display: block;
+  margin: 0;
+
+  max-width: 554px;     /* ✅ щоб не було “одним рядком” */
+  width: 100%;
+  text-align: center;
+
+  font-size: 20px;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.8);
+}
+/* ===== EMPTY STATE — like Figma ===== */
+.favorites-right {
+  position: relative;
+  min-height: 520px; /* як у макеті зона справа */
+}
+
+/* по дефолту сховано */
+.favorites-empty {
+  display: none;
+  position: absolute;
+  inset: 0;
+
+  /* центрування */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* стиль */
+  max-width: 554px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.8);
+
+  /* 🔥 опустити трохи нижче як на макеті */
+  transform: translateY(-70px);
+}
+
+/* коли пусто — ховаємо список і показуємо текст */
+.favorites-right.is-empty .favorites-list {
+  display: none;
+}
+
+.favorites-right.is-empty .favorites-empty {
+  display: flex;
+}
+html, body {
+  font-family: "DM Sans", sans-serif;
+}
+.stats-card{
+  background-image: url("/img/icon2_0.png"); /* якщо в public/img */
+  background-repeat: no-repeat;
+  background-position: 16px 16px;
+  background-size: 24px 24px;
+
+  padding-top: 52px; /* місце під іконку */
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("../fonts/dm-sans-variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("../fonts/dm-sans-italic-variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+html, body {
+  font-family: "DM Sans", sans-serif;
+}

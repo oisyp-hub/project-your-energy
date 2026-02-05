@@ -1,15 +1,79 @@
 <footer class="footer">
-  <div class="container">
-    <p class="footer-desc">
-      Made with ✨ by
-      <a
-        class="footer-link"
-        href="https://goit.global/ua/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GoIT team
-      </a>
-    </p>
+  <div class="container footer__container">
+    <div class="footer__top">
+      <!-- LEFT -->
+      <div class="footer__left">
+        <img
+          class="footer__logo"
+          src="./img/logo2.png"
+          alt="Your Energy"
+        />
+
+
+        <ul class="footer__socials" aria-label="Social links">
+          <li class="footer__social-item">
+            <a class="footer__social-link" href="#" aria-label="Facebook">
+              <img class="footer__social-icon" src="./img/1a.png" alt="" />
+            </a>
+          </li>
+          <li class="footer__social-item">
+            <a class="footer__social-link" href="#" aria-label="Instagram">
+              <img class="footer__social-icon" src="img/2a.png" alt="" />
+            </a>
+          </li>
+          <li class="footer__social-item">
+            <a class="footer__social-link" href="#" aria-label="YouTube">
+              <img class="footer__social-icon" src="img/3a.png" alt="" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- CENTER -->
+      <div class="footer__center">
+        <h2 class="footer__title">
+          Transforming your <span class="footer__title-italic">body</span><br />
+          shape with us
+        </h2>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="footer__right">
+        <p class="footer__subtitle">Subscribe and learn about new exercises!</p>
+
+        <form class="footer__form" name="subscribe-form" autocomplete="on">
+          <label class="footer__field">
+            <span class="visually-hidden"></span>
+            <input
+              class="footer__input"
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </label>
+
+          <button class="footer__btn" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">Your Energy, All rights reserved.</p>
+
+      <div class="footer__links">
+        <a class="footer__link" href="#">Privacy Policy</a>
+        <span class="footer__sep">/</span>
+        <a class="footer__link" href="#">Terms of Service</a>
+      </div>
+
+      <p class="footer__year">©2023</p>
+    </div>
   </div>
 </footer>
+
+
+<!-- MODAL ROOT -->
+<div class="modal is-hidden" id="exercise-modal" aria-hidden="true">
+</div>
+</body>

@@ -1,0 +1,341 @@
+<section class="exercises">
+  <div class="container exercises__container">
+    <div class="exercises__head">
+      <h2 class="exercises__title">
+        Exercises <span class="exercises__slash">/</span>
+        <span class="exercises__crumb" id="current-category"> </span>
+      </h2>
+
+      <div class="exercises__controls">
+        <form class="exercises__search is-hidden" id="top-search-form">
+          <input
+            class="exercises__search-input"
+            type="text"
+            id="top-search-input"
+            name="keyword"
+            placeholder="Search exercise"
+            autocomplete="off"
+          />
+          <button class="exercises__search-btn" type="submit">Search</button>
+        </form>
+
+        <div class="exercises__tabs" role="tablist" aria-label="Filters">
+          <button
+            class="exercises__tab is-active"
+            type="button"
+            data-filter="Muscles"
+            role="tab"
+            aria-selected="true"
+          >
+            Muscles
+          </button>
+          <button
+            class="exercises__tab"
+            type="button"
+            data-filter="Body parts"
+            role="tab"
+            aria-selected="false"
+          >
+            Body parts
+          </button>
+          <button
+            class="exercises__tab"
+            type="button"
+            data-filter="Equipment"
+            role="tab"
+            aria-selected="false"
+          >
+            Equipment
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="exercises__grid">
+      <!-- LEFT COLUMN -->
+      <div class="exercises__aside">
+        <article class="quote-card">
+          <div class="quote-card__head">
+            <div class="quote-card__label">
+              <span class="quote-card__badge" aria-hidden="true">
+                <picture>
+                  <source type="image/avif" srcset="./img/icon3.avif" />
+                  <source type="image/webp" srcset="./img/icon3.webp" />
+                  <img class="quote-card__badge-icon" src="./img/icon3.png" alt="" />
+                </picture>
+              </span>
+              <p class="quote-card__title">Quote of the day</p>
+            </div>
+
+            <picture>
+              <source type="image/avif" srcset="./img/commas.avif" />
+              <source type="image/webp" srcset="./img/commas.webp" />
+              <img class="quote-card__mark" src="./img/commas.png" alt="" aria-hidden="true" />
+            </picture>
+          </div>
+
+          <p class="quote-card__text">
+            A lot of times I find that people who are blessed<br />
+            with the most talent don't ever develop that<br />
+            attitude, and the ones who aren't blessed in<br />
+            that<br />
+            way are the most competitive and have the<br />
+            biggest heart.
+          </p>
+
+          <p class="quote-card__author">Tom Brady</p>
+        </article>
+
+        <div class="aside-photo" aria-label="Workout photo">
+          <picture>
+            <source type="image/avif" srcset="./img/twowo.avif" />
+            <source type="image/webp" srcset="./img/twowo.webp" />
+            <img
+              class="aside-photo__img"
+              src="./img/twowo.png"
+              alt="Women workout"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+
+        <article class="info-card" aria-label="Daily activity info">
+          <div class="info-card__head">
+            <span class="info-card__badge" aria-hidden="true">
+              <picture>
+                <source type="image/avif" srcset="./img/icon2.avif" />
+                <source type="image/webp" srcset="./img/icon2.webp" />
+                <img class="info-card__icon" src="./img/icon2.png" alt="" aria-hidden="true" />
+              </picture>
+            </span>
+
+            <div class="info-card__meta">
+              <p class="info-card__title">110 min</p>
+              <p class="info-card__subtitle">Daily norm of sports</p>
+            </div>
+          </div>
+
+          <p class="info-card__text">
+            The World Health Organization recommends at least 150 minutes of
+            moderate-intensity aerobic physical activity throughout the week for
+            adults aged 18-64. However, what happens if we adjust that number to
+            110 minutes every day? While it might seem like a high number to hit,
+            dedicating 110 minutes daily to sporting activities may offer
+            unparalleled benefits to physical health, mental well-being, and
+            overall quality of life.
+          </p>
+        </article>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="exercises__right">
+        <ul class="categories" id="categories-list" aria-label="Categories">
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/2.avif" />
+              <source type="image/webp" srcset="./img/2.webp" />
+              <img class="category-card__img" src="./img/2.png" alt="Abductors" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Abductors</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/1.avif" />
+              <source type="image/webp" srcset="./img/1.webp" />
+              <img class="category-card__img" src="./img/1.png" alt="Abs" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Abs</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/3.avif" />
+              <source type="image/webp" srcset="./img/3.webp" />
+              <img class="category-card__img" src="./img/3.png" alt="Adductors" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Adductors</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/4.avif" />
+              <source type="image/webp" srcset="./img/4.webp" />
+              <img class="category-card__img" src="./img/4.png" alt="Back" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Back</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/5.avif" />
+              <source type="image/webp" srcset="./img/5.webp" />
+              <img class="category-card__img" src="./img/5.png" alt="Biceps" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Biceps</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/6.avif" />
+              <source type="image/webp" srcset="./img/6.webp" />
+              <img class="category-card__img" src="./img/6.png" alt="Calves" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Calves</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/7.avif" />
+              <source type="image/webp" srcset="./img/7.webp" />
+              <img class="category-card__img" src="./img/7.png" alt="Delts" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Delts</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/8.avif" />
+              <source type="image/webp" srcset="./img/8.webp" />
+              <img class="category-card__img" src="./img/8.png" alt="Forearms" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Forearms</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/9.avif" />
+              <source type="image/webp" srcset="./img/9.webp" />
+              <img class="category-card__img" src="./img/9.png" alt="Glutes" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Glutes</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/10.avif" />
+              <source type="image/webp" srcset="./img/10.webp" />
+              <img class="category-card__img" src="./img/10.png" alt="Hamstrings" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Hamstrings</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/11.avif" />
+              <source type="image/webp" srcset="./img/11.webp" />
+              <img class="category-card__img" src="./img/11.png" alt="Lats" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Lats</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+
+          <li class="category-card">
+            <picture>
+              <source type="image/avif" srcset="./img/12.avif" />
+              <source type="image/webp" srcset="./img/12.webp" />
+              <img class="category-card__img" src="./img/12.png" alt="Upper back" />
+            </picture>
+            <div class="category-card__overlay">
+              <p class="category-card__name">Upper back</p>
+              <p class="category-card__type">Muscles</p>
+            </div>
+          </li>
+        </ul>
+
+        <section class="exercise-list is-hidden" id="exercises-section" aria-label="Exercises">
+          <div class="exercise-list__head">
+            <h3 class="exercise-list__title" id="exercises-title"></h3>
+          </div>
+
+          <ul class="exercise-cards" id="exercises-list"></ul>
+        </section>
+      </div>
+    </div>
+
+    <!-- ✅ Exercise Modal -->
+    <div class="backdrop is-hidden" id="exercise-modal">
+      <div class="modal modal-exercise" role="dialog" aria-modal="true" aria-label="Exercise details">
+        <button class="modal__close" type="button" data-close-modal aria-label="Close modal">×</button>
+        <div class="modal-exercise__content" id="exercise-modal-content"></div>
+      </div>
+    </div>
+
+    <!-- ✅ Rating Modal (ADDED) -->
+    <div class="backdrop is-hidden" id="rating-modal" aria-hidden="true">
+      <div class="modal modal-rating" role="dialog" aria-modal="true" aria-label="Rate exercise">
+        <button class="modal__close" type="button" data-close-rating aria-label="Close">✕</button>
+
+        <div class="rating-modal__content">
+          <p class="rating-modal__label">Rating</p>
+
+          <div class="rating-modal__row">
+            <span class="rating-modal__value" id="rating-value">0.0</span>
+            <div class="rating-modal__stars" id="rating-stars" aria-label="Choose rating"></div>
+          </div>
+
+          <form class="rating-modal__form" id="rating-form" novalidate>
+            <label class="rating-modal__field">
+              <input
+                class="rating-modal__input"
+                type="email"
+                name="email"
+                placeholder="Email"
+                autocomplete="email"
+                required
+              />
+            </label>
+
+            <label class="rating-modal__field">
+              <textarea
+                class="rating-modal__textarea"
+                name="comment"
+                placeholder="Your comment"
+                rows="4"
+              ></textarea>
+            </label>
+
+            <button class="btn btn--light rating-modal__send" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination" aria-label="Pagination">
+      <button class="pagination__btn is-active" type="button">1</button>
+      <button class="pagination__btn" type="button">2</button>
+    </div>
+  </div>
+</section>

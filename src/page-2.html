@@ -1,28 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page 2</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
-    <load
-      src="./partials/header.html"
-      icon-path="./img/sprite.svg#logo"
-      highlight-act="active"
-    />
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Energy — Favorites</title>
 
-    <main>
-      <div class="container">
-        <h1 class="main-title">
-          <span class="main-title-gradient">Welcome</span> to page 2
-        </h1>
-        <load src="./partials/back-link.html" />
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/favorite.css" />
+</head>
+
+<body>
+<!-- ✅ Exercise Modal -->
+<div class="backdrop is-hidden" id="exercise-modal" aria-hidden="true">
+  <div class="modal modal-exercise">
+    <button class="modal__close" type="button" data-close-modal aria-label="Close">×</button>
+    <div id="exercise-modal-content" class="modal-exercise__content"></div>
+  </div>
+</div>
+
+<!-- ✅ Rating Modal -->
+<div class="backdrop is-hidden" id="rating-modal" aria-hidden="true">
+  <div class="modal modal-rating" role="dialog" aria-modal="true" aria-label="Rate exercise">
+    <button class="modal__close" type="button" data-close-rating aria-label="Close">×</button>
+
+    <div class="rating-modal__content">
+      <p class="rating-modal__label">Rating</p>
+
+      <div class="rating-modal__row">
+        <span class="rating-modal__value" id="rating-value">0.0</span>
+        <div class="rating-modal__stars" id="rating-stars" aria-label="Choose rating"></div>
       </div>
-    </main>
 
-    <load src="./partials/footer.html" />
-  </body>
+      <form class="rating-modal__form" id="rating-form" novalidate>
+        <label class="rating-modal__field">
+          <input name="email" type="email" placeholder="Email" />
+        </label>
+
+        <label class="rating-modal__field">
+          <textarea name="comment" placeholder="Your comment"></textarea>
+        </label>
+
+        <button class="btn btn--light rating-modal__send" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<load
+  src="./partials/header.html"
+  icon-path="./img/sprite.svg#logo"
+  highlight-act="active"
+/>
+
+<main class="favorites-page">
+  <div class="container">
+    <h1 class="favorites-title">Favorites</h1>
+
+    <div class="favorites-layout">
+      <aside class="favorites-left">
+        <section class="quote-card">
+          <div class="quote-header">
+            <span class="quote-icon">
+              <img src="./img/icon3.png" alt="" aria-hidden="true" />
+            </span>
+
+            <span class="quote-label">Quote of the day</span>
+
+            <img class="quote-marks" src="./img/quotes.svg" alt="" aria-hidden="true" />
+          </div>
+
+          <p class="quote-text" id="fav-quote-text">Loading quote...</p>
+          <p class="quote-author" id="fav-quote-author"></p>
+        </section>
+
+        <div class="favorites-left-bottom">
+          <div class="stats-card">
+
+            <p class="stats-time">110 min</p>
+            <p class="stats-label">Daily norm of sports</p>
+          </div>
+
+          <div class="image-card">
+            <img src="./img/favimg.png" alt="People training" />
+          </div>
+        </div>
+      </aside>
+
+      <div class="favorites-right" id="favorites-right">
+        <ul class="favorites-list" id="favorites-list"></ul>
+
+        <p class="favorites-empty" id="favorites-empty">
+          It appears that you haven't added any exercises to your favorites yet.
+          To get started, you can add exercises that you like to your favorites
+          for easier access in the future.
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- scripts -->
+<script type="module" src="./js/header-nav.js"></script>
+
+<!-- ✅ важливо: ініт рейтинга має бути підключений на цій сторінці -->
+<script type="module">
+  import { initRatingModal } from "./js/components/rating-modal.js";
+  initRatingModal();
+</script>
+
+<!-- ✅ твоя логіка фаворитів (відкриття exercise modal) -->
+<script type="module" src="./js/components/page2.js"></script>
+<script type="module" src="./js/components/subscription.js"></script>
+
+</body>
 </html>

@@ -1,23 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
-    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/vite-promo.html" />
-      <load src="./partials/badges.html" />
-    </main>
+  <title>Vanilla App Template</title>
 
-    <load src="./partials/footer.html" />
+  <!-- ✅ робимо відносний шлях, щоб не ламалось на Pages -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
 
-    <script type="module" src="./main.js"></script>
-  </body>
+  <!-- ✅ лишаємо ОДИН styles.css -->
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+<load src="./partials/header.html" />
+
+<main>
+  <load src="./partials/hero.html" />
+</main>
+
+<load src="./partials/footer.html" />
+
+<!-- ✅ МОДАЛКИ мають бути всередині body -->
+<!-- Exercise details modal -->
+<div class="modal is-hidden" id="exercise-modal" aria-hidden="true">
+  <div class="modal__backdrop" data-modal-close="exercise"></div>
+
+  <div
+    class="modal__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Exercise details"
+  >
+    <button
+      class="modal__close"
+      type="button"
+      aria-label="Close"
+      data-modal-close="exercise"
+    >
+      ×
+    </button>
+    <div class="modal__content" id="exercise-modal-content"></div>
+  </div>
+</div>
+
+<!-- Rating modal -->
+<div class="modal is-hidden" id="rating-modal" aria-hidden="true">
+  <div class="modal__backdrop" data-modal-close="rating"></div>
+
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Give a rating">
+    <button
+      class="modal__close"
+      type="button"
+      aria-label="Close"
+      data-modal-close="rating"
+    >
+      ×
+    </button>
+
+    <form class="rating-form" id="rating-form">
+      <h3 class="rating-form__title">Rating</h3>
+
+      <div class="rating-form__radios">
+        <label><input type="radio" name="rate" value="1" required /> 1</label>
+        <label><input type="radio" name="rate" value="2" required /> 2</label>
+        <label><input type="radio" name="rate" value="3" required /> 3</label>
+        <label><input type="radio" name="rate" value="4" required /> 4</label>
+        <label><input type="radio" name="rate" value="5" required /> 5</label>
+      </div>
+
+      <p class="rating-form__hint">1 – bad, 5 – perfect</p>
+
+      <label class="rating-form__field">
+        <span>Email</span>
+        <input
+          type="email"
+          name="email"
+          id="rating-email"
+          required
+          pattern="^\\w+(\\.\\w+)?@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$"
+          placeholder="your@email.com"
+        />
+      </label>
+
+      <button class="rating-form__submit" type="submit">Send</button>
+    </form>
+  </div>
+</div>
+
+<!-- ✅ всі скрипти в кінці body -->
+<script type="module" src="./main.js"></script>
+<script type="module" src="./js/components/subscription.js"></script>
+</body>
 </html>

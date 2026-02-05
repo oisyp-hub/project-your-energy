@@ -1,44 +1,211 @@
+/* ===== HEADER ONLY ===== */
 .header {
-  padding: 20px 0;
-}
-.nav {
+  width: 100%;            /* Header займає всю ширину екрану */
+  padding: 15px 0;        /* тільки зверху і знизу */
+  background: #F4F4F4;
+  border-radius: 0;       /* або 18px для краси */
+
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-between; /* Ліва назва, центр чорний блок, право іконки */
+  box-sizing: border-box;         /* padding не збиває ширину */
 }
-.nav-logo {
-  display: inline-flex;
+
+/* LEFT */
+.header-left {
+  height: 32px;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 14px;    /* невеликий відступ від лівого краю */
+}
+
+.header .brand {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* CENTER BLACK PILL */
+.header-center {
+  display: flex;
+  gap: 4px;
+  justify-content: center;  /* Центруємо nav-items всередині блоку */
+  background: #242424;
+  padding: 5px;
+  min-width: 260px;
+  border-radius: 999px;
+}
+
+.header-center .nav-item {
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.header-center .nav-item.active {
+  background: #fff;
+  color: #111;
+}
+
+/* RIGHT SOCIALS — SMALL & FIXED */
+.header-right {
+  display: flex;
+  gap: 10px;
+  padding: 14px 32px;   /* невеликий відступ від правого краю */
+}
+
+.header-right .social-btn {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
   align-items: center;
   justify-content: center;
+  background: none; /* ❗️ */
+  border: none;
+  font-size: 14px;
+  text-decoration: none;
+  color: #111;
 }
-.nav-list {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 40px;
-}
-.nav-link {
-  position: relative;
+.header-right .social-btn img {
+  width: 35px;
+  height: 35px;
   display: block;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  transition: 200ms ease-in;
+
+  border: none;
+  outline: none;
+  background: transparent;
 }
-.nav-link:hover,
-.nav-link:focus {
-  color: #747bff;
+.header-right .social-btn:focus,
+.header-right .social-btn:active {
+  outline: none;
+  box-shadow: none;
 }
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%) translateY(100%);
-  width: 110%;
-  height: 4px;
-  border-radius: 4px;
-  transform-origin: center;
-  animation: stretch 400ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 200ms both;
+.burger{
+  display:none;
+  width:44px;
+  height:44px;
+  border:0;
+  background:transparent;
+  padding:10px;
+  border-radius:12px;
+  cursor:pointer;
 }
-.nav-link.active::after {
-  background: #747bff;
+
+.burger__line{
+  display:block;
+  width:100%;
+  height:2px;
+  background:#111;
+  border-radius:2px;
+}
+.burger__line + .burger__line{ margin-top:6px; }
+
+@media (max-width:600px){
+  .burger{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* якщо на мобілці треба лишити тільки бургер (як часто на макеті) */
+  .header-right .social-btn{ display:none; }
+
+  /* якщо на мобілці меню в центрі зайве — сховай */
+  /* .header-center{ display:none; } */
+}
+@media (max-width: 768px) {
+  .header-center {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  /* прибираємо пігулку меню */
+  .header-center { display: none; }
+
+  /* прибираємо соц-іконки */
+  .header-right .social-btn { display: none; }
+
+  /* ставимо бургер справа */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* бургер-кнопка */
+  .burger {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .burger__line {
+    display: block !important;
+    width: 28px;          /* як на макеті */
+    height: 3px;
+    background: #111;
+    border-radius: 2px;
+  }
+
+  .burger__line + .burger__line {
+    margin-top: 6px;
+  }
+}
+/* ===== Burger базово прихований ===== */
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.burger__line {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: #111;
+  border-radius: 2px;
+
+  /* щоб текст/line-height ніколи не впливав */
+  font-size: 0;
+  line-height: 0;
+}
+
+@media (max-width: 600px) {
+  /* прибираємо чорну пігулку */
+  .header-center {
+    display: none;
+  }
+
+  /* прибираємо соц-іконки */
+  .header-right .social-btn {
+    display: none;
+  }
+
+  /* показуємо бургер */
+  .burger {
+    display: flex;
+  }
 }
