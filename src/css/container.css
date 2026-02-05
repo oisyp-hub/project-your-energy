@@ -17,3 +17,10 @@
     max-width: 1200px;
   }
 }
+
+/* FIX: Exercises block alignment */
+.exercises__grid {
+  width: 100%;
+  justify-content: space-between; /* або start якщо треба */
+  align-items: start;
+}
