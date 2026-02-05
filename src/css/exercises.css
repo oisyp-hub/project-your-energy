@@ -845,3 +845,113 @@
   flex-direction: column;
   gap: 16px;
 }
+.exercise-card{
+  background:#fff;
+  border: 1px solid rgba(17,17,17,.08);
+  border-radius: 20px;
+  padding: 16px 18px;
+}
+
+.exercise-card__top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom: 12px;
+}
+
+.exercise-card__top-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width: 0;
+}
+
+.exercise-card__badge{
+  display:inline-flex;
+  align-items:center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(17,17,17,.25);
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.exercise-card__rating{
+  display:inline-flex;
+  align-items:center;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.exercise-card__start{
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+
+.exercise-card__start:hover{
+  background: rgba(17,17,17,.06);
+}
+
+.exercise-card__name-row{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.exercise-card__icon-wrap{
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex: 0 0 28px;
+}
+
+.exercise-card__icon{
+  width: 16px;
+  height: 16px;
+  display:block;
+}
+
+.exercise-card__name{
+  margin:0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* 3 рядки як у макеті */
+.exercise-card__meta{
+  margin:0;
+  display:grid;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(17,17,17,.55);
+}
+
+.exercise-card__meta-item{
+  display:flex;
+  gap: 6px;
+  align-items:baseline;
+}
+
+.exercise-card__meta-item b{
+  color: rgba(17,17,17,.8);
+  font-weight: 600;
+}
+
