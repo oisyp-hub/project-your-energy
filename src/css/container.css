@@ -28,3 +28,6 @@
   width: 100%;
   max-width: none;
 }
+.exercises .container {
+  margin-left: 0;
+}
