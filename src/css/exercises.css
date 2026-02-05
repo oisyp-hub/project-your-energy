@@ -1121,4 +1121,17 @@
     row-gap: 32px;
   }
 }
+@media (min-width: 768px) {
+  ul.exercise-cards,
+  ul#exercises-list.exercise-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  ul.exercise-cards,
+  ul#exercises-list.exercise-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
 
