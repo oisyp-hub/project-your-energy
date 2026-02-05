@@ -1159,3 +1159,10 @@
     min-height: 141px;
   }
 }
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 0 32px;
+    margin: 0 auto;
+  }
+}
