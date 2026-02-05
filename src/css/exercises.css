@@ -1141,3 +1141,21 @@
     gap: 20px; /* або лишай свій gap */
   }
 }
+@media (min-width: 1440px) {
+  /* права частина як на макеті */
+  .exercises__right {
+    width: 900px;
+  }
+
+  /* 2 колонки, щоб в сумі було рівно 900 */
+  .exercise-cards {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;   /* як у макеті */
+    row-gap: 32px;
+  }
+
+  /* висота картки як у макеті */
+  .exercise-card {
+    min-height: 141px;
+  }
+}
