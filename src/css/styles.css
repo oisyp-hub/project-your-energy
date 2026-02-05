@@ -990,3 +990,8 @@ html, body {
   height: 40px;
   cursor: pointer;
 }
+
+#exercise-modal .modal-exercise__media {
+  background: #fff !important;
+}
+
