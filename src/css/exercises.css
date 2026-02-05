@@ -1141,3 +1141,17 @@
     gap: 20px; /* або лишай свій gap */
   }
 }
+@media (min-width: 1440px) {
+  .exercise-cards {
+    grid-template-columns: repeat(2, 442px);
+    column-gap: 20px; /* як у тебе */
+    row-gap: 32px;
+    justify-content: start; /* щоб не розтягувало */
+  }
+
+  .exercise-card {
+    height: 141px;
+    padding: 16px 18px; /* можна підкрутити */
+    overflow: hidden;
+  }
+}
