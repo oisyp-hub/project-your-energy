@@ -1194,3 +1194,10 @@
   padding: 0 16px; /* або скільки у макеті */
 }
 
+/* Laptop: 1024–1439 */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .container.exercises__container {
+    margin-left: 32px;   /* підбирай: 16/24/32/40 */
+    margin-right: auto;  /* щоб не центрувалось */
+  }
+}
