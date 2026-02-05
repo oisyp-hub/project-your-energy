@@ -1187,3 +1187,10 @@
   padding: 0 20px;       /* або 32px якщо так у макеті */
   box-sizing: border-box;
 }
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px; /* або скільки у макеті */
+}
+
