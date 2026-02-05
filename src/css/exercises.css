@@ -1101,4 +1101,24 @@
     row-gap: 32px;
   }
 }
+/* RIGHT: exercises list MUST be 2 columns on desktop */
+.exercise-cards{
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr; /* mobile */
+}
+
+@media (min-width: 768px){
+  .exercise-cards{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1440px){
+  .exercise-cards{
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 🔥 force 2 */
+    column-gap: 16px;
+    row-gap: 32px;
+  }
+}
 
