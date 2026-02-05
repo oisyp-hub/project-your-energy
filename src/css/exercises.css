@@ -1187,3 +1187,41 @@
   padding: 0 20px;       /* або 32px якщо так у макеті */
   box-sizing: border-box;
 }
+/* ===== Laptop fix: не даємо 3 колонки на 1200px ===== */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .exercises__grid {
+    display: grid;
+    grid-template-columns: 444px minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* правий блок не фіксований */
+  .exercises__right {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  /* categories: 2 колонки, щоб влазило */
+  .categories {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    justify-content: start;
+  }
+
+  /* картки не фікс 290 */
+  .category-card {
+    width: auto;
+  }
+}
+
+/* ===== ТІЛЬКИ 1440+ робимо як у макеті: 3x290 ===== */
+@media (min-width: 1440px) {
+  .categories {
+    width: 900px;
+    grid-template-columns: repeat(3, 290px);
+    gap: 20px;
+  }
+}
