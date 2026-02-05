@@ -1166,3 +1166,11 @@
     margin: 0 auto;
   }
 }
+/* ===== FIX container centering ===== */
+.container {
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+}
+
