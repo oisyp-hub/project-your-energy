@@ -6,7 +6,7 @@ import './css/fonts.css';
 import './css/modal.css';
 
 import { initHome } from './js/home/home.js';
-import { initMobileMenu } from './js/components/mobileMenu.js';
+import { initMobileMenu } from './js/components/mobilemenu.js';
 import { initRatingModal } from './js/components/rating-modal.js';
 
 function setActiveHeaderTab() {
