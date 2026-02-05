@@ -24,3 +24,7 @@
   justify-content: space-between; /* або start якщо треба */
   align-items: start;
 }
+.exercises__right {
+  width: 100%;
+  max-width: none;
+}
