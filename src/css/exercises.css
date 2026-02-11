@@ -1665,3 +1665,22 @@
   white-space: nowrap !important;
   flex: 0 0 auto !important;
 }
+.exercise-card__meta{
+  display: flex;
+  flex-wrap: nowrap;      /* 🔥 один рядок */
+  gap: 12px 16px;
+  align-items: center;
+  overflow: hidden;       /* важливо */
+}
+
+.exercise-card__meta > span{
+  white-space: nowrap;    /* не переносити */
+  flex: 0 0 auto;
+}
+
+.exercise-card__meta > span:last-child{
+  flex: 1 1 auto;         /* займає залишок */
+  min-width: 0;           /* 🔥 дозволяє стискатися */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
