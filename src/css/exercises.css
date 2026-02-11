@@ -1161,8 +1161,7 @@
 .categories {
   min-width: 0;
 }
-.exercise-card__meta{
-  display: flex;          /* 🔥 замість grid */
+.exercise-card__meta{       /* 🔥 замість grid */
   gap: 6px;
   flex-wrap: nowrap;      /* 🔥 тільки один рядок */
   align-items: baseline;
