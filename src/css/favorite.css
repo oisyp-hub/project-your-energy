@@ -35,7 +35,22 @@
     grid-template-columns: 444px 1fr;
   }
 }
+@media (max-width: 600px) {
+  .modal-exercise__actions {
+    flex-direction: column; 
+      margin-top: 32px !important;
+    align-items: stretch;     /* на всю ширину */
+    gap: 12px;
+  }
 
+  .modal-exercise__actions .btn {
+    width: 100%;              /* кнопки на всю ширину */
+  }
+}
+.modal-exercise__actions {
+  margin-top: auto;   /* 🔥 головне */
+}
+}
 /* ===== LEFT COLUMN ===== */
 .favorites-left {
   display: grid;
