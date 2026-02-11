@@ -1623,7 +1623,6 @@ html, body {
 
 .rating-toast--error { background: #b00020; }
 .rating-toast--success { background: #111; }
-}
 /* 🔹 Правильний flex для правої колонки */
 .modal-exercise__info {
   display: flex;
@@ -1637,7 +1636,7 @@ html, body {
   .modal-exercise__actions {
     margin-top: auto;
   }
-
+}
 /* 🔹 Mobile — просто відступ */
 @media (max-width: 600px) {
   .modal-exercise__actions {
@@ -1645,7 +1644,6 @@ html, body {
     flex-direction: column;
     gap: 12px;
   }
-
   .modal-exercise__actions .btn {
     width: 100%;
   }
