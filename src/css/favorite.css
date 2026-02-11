@@ -1661,23 +1661,5 @@ html, body {
     box-sizing: border-box;
 }
 
-@media (max-width: 600px) {
-  .hero__container{
-    display: flex;
-    flex-direction: column;
-  }
 
-  .hero__content{
-    order: 1 !important;
-  }
-
-  .hero__card{
-    order: 2 !important;
-  }
-
-  ul.hero__card-tags{
-    order: 3 !important;
-    margin-top: 16px !important;
-  }
-}
 
