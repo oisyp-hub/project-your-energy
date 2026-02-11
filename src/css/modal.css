@@ -757,3 +757,14 @@
     width: 100%;
   }
 }
+@media (max-width: 480px) {
+  .modal-exercise__actions {
+    flex-direction: column;   /* 🔥 вертикально */
+    align-items: stretch;     /* на всю ширину */
+    gap: 12px;
+  }
+
+  .modal-exercise__actions .btn {
+    width: 100%;              /* кнопки на всю ширину */
+  }
+}
