@@ -716,3 +716,44 @@
 .rating-toast--error {
   background: #b00020;
 }
+@media (max-width: 480px) {
+
+  .modal.modal-exercise {
+    width: 100%;
+    max-width: 335px;     /* як у макеті */
+    height: auto;
+    max-height: 90vh;
+    padding: 20px;
+    border-radius: 20px;
+    overflow-y: auto;
+  }
+
+  .modal-exercise__content {
+    grid-template-columns: 1fr;  /* одна колонка */
+    row-gap: 16px;
+  }
+
+  .modal-exercise__media {
+    width: 100%;
+    height: 200px;  /* як у макеті */
+    padding: 12px;
+  }
+
+  .modal-exercise__title {
+    font-size: 20px;
+  }
+
+  .modal-exercise__tags {
+    grid-template-columns: repeat(2, 1fr); /* 2 в ряд, не 4 */
+    row-gap: 12px;
+  }
+
+  .modal-exercise__actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .modal-exercise__actions .btn {
+    width: 100%;
+  }
+}
