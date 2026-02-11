@@ -1505,3 +1505,14 @@
   }
 
 }
+/* title in cards: 2 lines + ... */
+.exercise-card__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;  /* 🔥 максимум 2 рядки */
+  overflow: hidden;
+
+  line-height: 1.25;
+  max-height: calc(1.25em * 2);
+  word-break: break-word;
+}
