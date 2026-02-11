@@ -1649,9 +1649,12 @@ html, body {
   }
 }
 /* === FAVORITES MOBILE: 1 column === */
+/* ===== FAVORITES MOBILE FIX ===== */
 @media screen and (max-width: 600px) {
-  .fav-exercise {
+  .favorites-list {
     grid-template-columns: 1fr !important;
   }
 }
+
+
 
