@@ -1532,5 +1532,24 @@
   overflow-wrap: anywhere;   /* 🔥 якщо дуже довге */
   line-height: 1.2;
 }
+/* FIX meta overflow (force) */
+.exercise-card .exercise-card__meta{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px 12px !important;
+  min-width: 0 !important;
+}
+
+.exercise-card .exercise-card__meta > span{
+  min-width: 0 !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  line-height: 1.2 !important;
+}
+
+.exercise-card .exercise-card__meta > span:last-child{
+  flex-basis: 100% !important; /* Target на новий рядок */
+}
 
 
