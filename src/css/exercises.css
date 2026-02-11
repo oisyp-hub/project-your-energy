@@ -1574,7 +1574,6 @@
 /* === MOBILE (до 600) можеш залишити як зараз (2 рядки) === */
 @media (max-width: 600px) {
   .exercise-card__meta {
-    flex-wrap: wrap;
     row-gap: 6px;
   }
 }
