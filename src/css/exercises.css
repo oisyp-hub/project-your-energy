@@ -1581,5 +1581,37 @@
     row-gap: 6px;
   }
 }
+/* ===== FIX meta row like Figma (desktop) ===== */
+@media (min-width: 601px) {
+  .exercise-card__meta {
+    display: flex !important;
+    flex-wrap: nowrap !important;  /* 🔥 все в один рядок */
+    gap: 16px !important;
+    align-items: center;
+    margin: 0 !important;
+  }
+
+  .exercise-card__meta > * {
+    white-space: nowrap !important;
+    min-width: 0;
+  }
+
+  /* якщо було правило, що останній елемент робиться на 100% */
+  .exercise-card__meta > :last-child {
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+}
+
+/* Якщо Target у тебе окремим рядком (окремий елемент) — притиснемо в той самий ряд */
+@media (min-width: 601px) {
+  .exercise-card__meta + .exercise-card__target,
+  .exercise-card__meta + .exercise-card__meta-target,
+  .exercise-card__meta + .exercise-card__target-row {
+    display: inline !important;
+    margin: 0 0 0 16px !important; /* відступ як у макеті */
+    white-space: nowrap !important;
+  }
+}
 
 
