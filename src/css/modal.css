@@ -161,7 +161,6 @@
 
 /* ACTIONS bottom center */
 .modal-exercise__actions{
-  margin-top: auto;
   display: flex;
   justify-content: center;
   gap: 14px;
@@ -524,7 +523,6 @@
 
 /* кнопки знизу */
 .modal-exercise__actions {
-  margin-top: auto;
   display: flex;
   justify-content: center;
   gap: 14px;
