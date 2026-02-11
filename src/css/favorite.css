@@ -1650,7 +1650,7 @@ html, body {
 }
 /* === FAVORITES MOBILE: 1 column === */
 @media screen and (max-width: 600px) {
-  .exercise-cards {
+  .fav-exercise {
     grid-template-columns: 1fr !important;
   }
 }
