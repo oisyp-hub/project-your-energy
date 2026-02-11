@@ -1637,7 +1637,6 @@ html, body {
   .modal-exercise__actions {
     margin-top: auto;
   }
-}
 
 /* 🔹 Mobile — просто відступ */
 @media (max-width: 600px) {
