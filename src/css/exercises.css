@@ -1754,3 +1754,38 @@
   overflow: hidden !important;
   text-overflow: ellipsis !important;/* 🔥 ... */
 }
+/* === Target: не переносити, а значення обрізати ... === */
+.exercise-card__meta{
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+
+.exercise-card__meta > span{
+  white-space: nowrap !important;
+  min-width: 0 !important;
+}
+
+/* сам блок Target в один рядок (щоб ":" не тікав вниз) */
+.exercise-card__meta > span:last-child{
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 4px !important;
+
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+
+  white-space: nowrap !important;   /* 🔥 ключове */
+  overflow: hidden !important;
+}
+
+/* обрізаємо тільки значення */
+.exercise-card__meta > span:last-child b{
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
