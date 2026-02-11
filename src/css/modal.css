@@ -760,8 +760,7 @@
 @media (max-width: 600px) {
   .modal-exercise__actions {
     flex-direction: column; 
-      margin-top: 24px;
-    margin-bottom: 24px;/* 🔥 вертикально */
+      margin-top: 32px !important;
     align-items: stretch;     /* на всю ширину */
     gap: 12px;
   }
