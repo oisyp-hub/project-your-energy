@@ -1518,5 +1518,19 @@
   min-width: 0;
   white-space: nowrap;  /* тримає кожен чіп в один рядок */
 }
+.exercise-card__meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  min-width: 0;
+}
+
+.exercise-card__meta > span{
+  min-width: 0;              /* 🔥 дає стискатися */
+  max-width: 100%;           /* 🔥 не ширше контейнера */
+  white-space: normal;       /* 🔥 дозволяє перенос слів */
+  overflow-wrap: anywhere;   /* 🔥 якщо дуже довге */
+  line-height: 1.2;
+}
 
 
