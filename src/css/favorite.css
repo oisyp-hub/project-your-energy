@@ -1663,22 +1663,20 @@ html, body {
 
 @media screen and (max-width: 600px) {
 
-  .hero_container {
+  .hero_card {
     display: flex;
     flex-direction: column;
   }
 
-  .hero_content {
+  .hero_card picture {
     order: 1;
   }
 
-  .hero_card {
-    order: 2;
-  }
-
   .hero__card-tags {
-    order: 3;
+    order: 2;
     margin-top: 16px;
+    justify-content: center;
   }
 
 }
+
