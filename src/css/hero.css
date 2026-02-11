@@ -749,3 +749,58 @@
     margin-top: 16px !important;
   }
 }
+/* MOBILE (до 600px) — фінальна версія */
+@media (max-width: 600px) {
+  /* 1 колонка */
+  .hero__container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* текст */
+  .hero__content {
+    order: 1 !important;
+  }
+
+  /* ВАЖЛИВО: НЕ contents, інакше order у дітей буде некерований */
+  .hero__card {
+    order: 3 !important;
+    width: 100% !important;
+    justify-self: stretch !important;
+    justify-items: center !important;
+    margin-top: 0 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  /* велика картинка */
+  .hero__bottom-image {
+    order: 2 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .hero__bottom-image img {
+    width: 100% !important;
+    height: 460px !important;
+    object-fit: cover !important;
+    border-radius: 24px !important;
+    display: block !important;
+  }
+
+  /* теги під фото */
+  ul.hero__card-tags {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+}
