@@ -795,23 +795,6 @@
   min-height: 0 !important;
 }
 
-/* кнопки вниз */
-.modal-exercise__actions {
-  margin-top: auto !important;
-  padding-top: 16px; /* щоб не прилипали до тексту */
-}
-@media (max-width: 480px) {
-  .modal-exercise__actions {
-    display: flex;
-    flex-direction: column; /* 2 рядки */
-    gap: 12px;
-    padding: 0;
-  }
 
-  .modal-exercise__actions .btn {
-    width: 100%;
-    min-width: 0;          /* щоб desktop min-width не ламав */
-    height: 48px;
-  }
 }
 
