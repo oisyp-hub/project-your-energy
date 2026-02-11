@@ -1652,6 +1652,7 @@ html, body {
 /* ===== FAVORITES MOBILE FIX ===== */
 @media screen and (max-width: 600px) {
   .favorites-list {
+    display: grid !important;
     grid-template-columns: 1fr !important;
   }
 }
