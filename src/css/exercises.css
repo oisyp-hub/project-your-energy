@@ -1172,8 +1172,7 @@
 .exercise-card__meta > span {
   white-space: nowrap; /* кожен шматок в один рядок */
 }
-.exercise-card__meta {
-  display: flex;        /* було grid -> робимо flex */
+.exercise-card__meta {       /* було grid -> робимо flex */
   gap: 12px;            /* відстань між "Burned / Body / Target" */
   align-items: center;
   flex-wrap: nowrap;    /* все в один рядок */
@@ -1185,8 +1184,7 @@
 .exercise-card__meta > span {
   flex: 0 0 auto;       /* кожен шматок своєї ширини */
 }
-.exercise-card__meta {
-  display: flex;          /* один рядок */
+.exercise-card__meta {         /* один рядок */
   gap: 12px;
   align-items: center;
   flex-wrap: nowrap;
@@ -1504,8 +1502,7 @@
 
 }
 /* meta row: allow wrapping */
-.exercise-card__meta{
-  display: flex;    /* 🔥 дозволяє перенос */
+.exercise-card__meta{ /* 🔥 дозволяє перенос */
   gap: 6px 12px;        /* row/col gap */
   min-width: 0;
 }
@@ -1516,7 +1513,6 @@
   white-space: nowrap;  /* тримає кожен чіп в один рядок */
 }
 .exercise-card__meta{
-  display: flex;
   gap: 6px 12px;
   min-width: 0;
 }
@@ -1550,7 +1546,6 @@
 /* === META like Figma (one row on desktop) === */
 @media (min-width: 601px) {
   .exercise-card__meta {
-    display: flex;
     flex-wrap: nowrap;          /* 🔥 не переносимо */
     gap: 16px;
     align-items: center;
