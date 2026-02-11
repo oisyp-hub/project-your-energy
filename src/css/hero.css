@@ -10,7 +10,6 @@
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 32px;
-  box-sizing: border-box;
 }
 
 /* ✅ HERO GRID */
@@ -113,10 +112,11 @@
 }
 
 .hero__card-tags li {
-  padding: 6px 12px;
+  padding: 1px 12px;
   border: 1px solid #111;
-  border-radius: 20px;
+  border-radius: 30px;
   font-size: 14px;
+  gap: 10px;
   line-height: 1;
   text-align: center;
   white-space: nowrap;
@@ -687,5 +687,46 @@
     flex-wrap: wrap !important;
     justify-content: center !important;
     gap: 10px !important;
+  }
+}
+@media (max-width: 600px) {
+  /* контейнер hero як колонка */
+  .hero__container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* якщо у тебе є окремий блок з текстом */
+  .hero__content {
+    order: 1;
+  }
+
+  /* фото має бути перед тегами */
+  .hero__bottom-image,
+  .hero__image,
+  .hero__media {
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 28px;       /* як на макеті */
+    overflow: hidden;
+  }
+
+  /* теги під фото */
+  ul.hero__card-tags,
+  .hero__card-tags {
+    order: 3;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;   /* як на макеті */
+  }
+
+  /* щоб не роз’їжджались по ширині */
+  ul.hero__card-tags li,
+  .hero__card-tags-item {
+    flex: 0 0 auto;
   }
 }

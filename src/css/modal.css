@@ -686,3 +686,35 @@
     height: auto;
   }
 }
+.rating-toast {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  opacity: 0;
+
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  line-height: 1.2;
+
+  background: #111;
+  color: #fff;
+
+  z-index: 9999;
+  transition: opacity 220ms ease, transform 220ms ease;
+  pointer-events: none;
+}
+
+.rating-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.rating-toast--success {
+  background: #111;
+}
+
+.rating-toast--error {
+  background: #b00020;
+}

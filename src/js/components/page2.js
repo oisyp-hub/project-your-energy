@@ -1,5 +1,11 @@
 import { api } from '../api/yourEnergyApi.js';
 import { openExerciseModal } from './exerciseModal.js';
+import { initMobileMenu } from './mobileMenu.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  initMobileMenu();
+});
+
 
 const LS_KEY = 'yourEnergy:favorites';
 

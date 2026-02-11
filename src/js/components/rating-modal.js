@@ -54,18 +54,28 @@ function unlockBodyScrollIfNoModals() {
 }
 
 // ========================
-// FORCE hide helpers (fix stacked modals)
+// Toast (instead of alert)
 // ========================
-function forceHideExerciseModal() {
-  const ex = document.querySelector('#exercise-modal');
-  if (!ex) return;
+let toastTimer = null;
 
-  ex.classList.add('is-hidden');
-  ex.hidden = true;
-  ex.setAttribute('aria-hidden', 'true');
+function showToast(text, type = 'success') {
+  // прибрати попередній toast
+  const old = document.querySelector('.rating-toast');
+  if (old) old.remove();
+  if (toastTimer) clearTimeout(toastTimer);
 
-  const exContent = document.querySelector('#exercise-modal-content');
-  if (exContent) exContent.innerHTML = '';
+  const el = document.createElement('div');
+  el.className = `rating-toast rating-toast--${type}`;
+  el.textContent = text;
+
+  document.body.appendChild(el);
+
+  requestAnimationFrame(() => el.classList.add('is-visible'));
+
+  toastTimer = setTimeout(() => {
+    el.classList.remove('is-visible');
+    setTimeout(() => el.remove(), 250);
+  }, 2200);
 }
 
 // ========================
@@ -75,9 +85,6 @@ function clamp(n, min, max) {
   return Math.min(max, Math.max(min, n));
 }
 
-/**
- * Підфарбовує існуючі зірки (без перевставлення DOM)
- */
 function paintStars(starsWrap, value) {
   const fullCount = clamp(Number(value) || 0, 0, 5);
   const btns = starsWrap.querySelectorAll('.rating-star-btn');
@@ -90,9 +97,6 @@ function paintStars(starsWrap, value) {
   });
 }
 
-/**
- * Рендерить кнопки-зірки ОДИН РАЗ, а далі ми лише paintStars()
- */
 function renderStars(starsWrap) {
   starsWrap.innerHTML = '';
 
@@ -113,7 +117,6 @@ function renderStars(starsWrap) {
     starsWrap.append(btn);
   }
 
-  // стартовий стан
   paintStars(starsWrap, 0);
 }
 
@@ -141,6 +144,9 @@ function closeRatingModal() {
   currentRating = 0;
 
   unlockBodyScrollIfNoModals();
+
+  // ✅ без циклічних імпортів: кажемо exerciseModal “повернись”
+  window.dispatchEvent(new CustomEvent('rating:closed'));
 }
 
 // ========================
@@ -149,7 +155,9 @@ function closeRatingModal() {
 function initRatingModal() {
   const got = getElsOnce();
   if (!got) {
-    console.error('Rating modal DOM not found (#rating-modal, #rating-form, #rating-stars, #rating-value).');
+    console.error(
+      'Rating modal DOM not found (#rating-modal, #rating-form, #rating-stars, #rating-value).'
+    );
     return;
   }
 
@@ -158,22 +166,20 @@ function initRatingModal() {
   if (ratingModal.dataset.bound === '1') return;
   ratingModal.dataset.bound = '1';
 
-  // ⭐ створюємо зірки 1 раз
   renderStars(starsWrap);
 
-  // ✅ HOVER PREVIEW (ось цього тобі не вистачало)
+  // ✅ HOVER PREVIEW
   starsWrap.addEventListener('mouseover', e => {
     const btn = e.target.closest('.rating-star-btn');
     if (!btn) return;
     paintStars(starsWrap, Number(btn.dataset.value));
   });
 
-  // коли курсор пішов із блоку — повертаємо “зафіксований” рейтинг
   starsWrap.addEventListener('mouseleave', () => {
     paintStars(starsWrap, currentRating);
   });
 
-  // для клавіатури (Tab)
+  // keyboard focus preview
   starsWrap.addEventListener('focusin', e => {
     const btn = e.target.closest('.rating-star-btn');
     if (!btn) return;
@@ -184,7 +190,7 @@ function initRatingModal() {
     paintStars(starsWrap, currentRating);
   });
 
-  // click: фіксуємо рейтинг
+  // click: set rating
   starsWrap.addEventListener('click', e => {
     const btn = e.target.closest('.rating-star-btn');
     if (!btn) return;
@@ -205,14 +211,25 @@ function initRatingModal() {
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
-    if (!currentExerciseId) return alert('No exercise selected');
-    if (!currentRating) return alert('Please set rating');
+    if (!currentExerciseId) {
+      showToast('No exercise selected', 'error');
+      return;
+    }
+
+    if (!currentRating) {
+      showToast('Please set rating', 'error');
+      return;
+    }
 
     const fd = new FormData(form);
     const email = String(fd.get('email') || '').trim();
-    const comment = String(fd.get('comment') || '').trim();
+    // comment зараз у тебе не відправляється в API — залишаю як є
+    // const comment = String(fd.get('comment') || '').trim();
 
-    if (!email) return alert('Please enter email');
+    if (!email) {
+      showToast('Please enter email', 'error');
+      return;
+    }
 
     try {
       await api.rateExercise(currentExerciseId, {
@@ -221,13 +238,12 @@ function initRatingModal() {
       });
 
       closeRatingModal();
-      alert('Thanks! Rating sent.');
+      showToast('Thanks! Rating sent.', 'success');
     } catch (err) {
       console.error('Failed to rate exercise:', err);
-      alert(`Failed to send rating: ${err.message}`);
+      showToast(`Failed to send rating: ${err.message}`, 'error');
     }
   });
-
 }
 
 // ========================
@@ -236,8 +252,6 @@ function initRatingModal() {
 function openRatingModal(exerciseId) {
   const got = getElsOnce();
   if (!got) return false;
-
-  forceHideExerciseModal();
 
   const { ratingModal, ratingValueEl, starsWrap, form } = got;
 

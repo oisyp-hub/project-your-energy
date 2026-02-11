@@ -6,20 +6,13 @@
   font-family: 'DM Sans', sans-serif;
 
   /* ✅ гарантовано full-bleed навіть якщо footer всередині wrapper/container */
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
 }
 
 /* контейнер лише для вирівнювання контенту */
 .footer__container {
-  max-width: none;
-  width:100%;
-  margin: 0 ;
-  padding: 0 32px;
-  box-sizing: border-box;
-  width: 100%;
-
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
   background: transparent; /* ✅ важливо */
 }
 

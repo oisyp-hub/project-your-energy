@@ -34,7 +34,7 @@ export const api = {
     return request(`/filters?${params.toString()}`);
   },
 
-  getExercises({ bodypart, muscles, equipment, keyword, page = 1, limit = 10 } = {}) {
+  getExercises({ bodypart, muscles, equipment, keyword, page = 1, limit = 12 } = {}) {
     const params = new URLSearchParams();
     if (bodypart) params.set('bodypart', bodypart);
     if (muscles) params.set('muscles', muscles);

@@ -1,40 +1,42 @@
-/* ===== HEADER ONLY ===== */
+/* ===== HEADER WRAPPER ===== */
 .header {
-  width: 100%;            /* Header займає всю ширину екрану */
-  padding: 15px 0;        /* тільки зверху і знизу */
+  width: 100%;
   background: #F4F4F4;
-  border-radius: 0;       /* або 18px для краси */
+}
+
+/* 🔥 КОНТЕЙНЕР — ВЕСЬ FLEX ТУТ */
+.header__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 15px 32px;
 
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Ліва назва, центр чорний блок, право іконки */
-  box-sizing: border-box;         /* padding не збиває ширину */
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
 /* LEFT */
 .header-left {
   height: 32px;
-  object-fit: contain;
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-left: 14px;    /* невеликий відступ від лівого краю */
-}
-
-.header .brand {
-  font-size: 14px;
-  font-weight: 600;
 }
 
 /* CENTER BLACK PILL */
 .header-center {
-  display: flex;
-  gap: 4px;
-  justify-content: center;  /* Центруємо nav-items всередині блоку */
+  width: 265px;          /* 🔥 з макета */
+  height: 52px;          /* 🔥 з макета */
   background: #242424;
-  padding: 5px;
-  min-width: 260px;
-  border-radius: 999px;
+  border-radius: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  padding: 0;            /* ❗️важливо */
 }
 
 .header-center .nav-item {
@@ -42,7 +44,6 @@
   border-radius: 999px;
   font-size: 14px;
   color: #aaa;
-  cursor: pointer;
 }
 
 .header-center .nav-item.active {
@@ -50,123 +51,43 @@
   color: #111;
 }
 
-/* RIGHT SOCIALS — SMALL & FIXED */
+/* RIGHT */
 .header-right {
   display: flex;
-  gap: 10px;
-  padding: 14px 32px;   /* невеликий відступ від правого краю */
+  align-items: center;
+  gap: 12px;
 }
 
-.header-right .social-btn {
-  width: 35px;
-  height: 35px;
+/* ===== SOCIAL ICONS (РЕАЛЬНО 2x) ===== */
+.social-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-list__link {
+  width: 48px;
+  height: 48px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none; /* ❗️ */
-  border: none;
-  font-size: 14px;
-  text-decoration: none;
-  color: #111;
-}
-.header-right .social-btn img {
-  width: 35px;
-  height: 35px;
-  display: block;
 
-  border: none;
-  outline: none;
   background: transparent;
-}
-.header-right .social-btn:focus,
-.header-right .social-btn:active {
-  outline: none;
-  box-shadow: none;
-}
-.burger{
-  display:none;
-  width:44px;
-  height:44px;
-  border:0;
-  background:transparent;
-  padding:10px;
-  border-radius:12px;
-  cursor:pointer;
+  border: none;
+  padding: 0;
 }
 
-.burger__line{
-  display:block;
-  width:100%;
-  height:2px;
-  background:#111;
-  border-radius:2px;
+.social-list__link img {
+  width: 44px;
+  height: 44px;
+  display: block;
 }
-.burger__line + .burger__line{ margin-top:6px; }
 
-@media (max-width:600px){
-  .burger{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  /* якщо на мобілці треба лишити тільки бургер (як часто на макеті) */
-  .header-right .social-btn{ display:none; }
-
-  /* якщо на мобілці меню в центрі зайве — сховай */
-  /* .header-center{ display:none; } */
-}
-@media (max-width: 768px) {
-  .header-center {
-    display: none;
-  }
-}
-@media (max-width: 600px) {
-  /* прибираємо пігулку меню */
-  .header-center { display: none; }
-
-  /* прибираємо соц-іконки */
-  .header-right .social-btn { display: none; }
-
-  /* ставимо бургер справа */
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .header-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  /* бургер-кнопка */
-  .burger {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    padding: 10px;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-  }
-
-  .burger__line {
-    display: block !important;
-    width: 28px;          /* як на макеті */
-    height: 3px;
-    background: #111;
-    border-radius: 2px;
-  }
-
-  .burger__line + .burger__line {
-    margin-top: 6px;
-  }
-}
-/* ===== Burger базово прихований ===== */
+/* ===== BURGER ===== */
 .burger {
   display: none;
   width: 44px;
@@ -175,37 +96,88 @@
   border: 0;
   background: transparent;
   cursor: pointer;
-
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
 }
 
 .burger__line {
-  display: block;
   width: 28px;
   height: 3px;
   background: #111;
   border-radius: 2px;
-
-  /* щоб текст/line-height ніколи не впливав */
-  font-size: 0;
-  line-height: 0;
 }
 
+/* ===== TABLET ===== */
+@media (max-width: 768px) {
+  .header-center {
+    display: none;
+  }
+}
+
+/* ===== MOBILE ===== */
 @media (max-width: 600px) {
-  /* прибираємо чорну пігулку */
   .header-center {
     display: none;
   }
 
-  /* прибираємо соц-іконки */
-  .header-right .social-btn {
+  .social-list {
     display: none;
   }
 
-  /* показуємо бургер */
   .burger {
     display: flex;
   }
+
+  .header-right {
+    justify-content: flex-end;
+  }
+}
+@media (max-width: 600px) {
+  .header__container {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important; /* лого | бургер */
+    align-items: center !important;
+
+    padding: 14px 16px !important;
+    min-height: 56px !important;
+  }
+
+  .header-center {
+    display: none !important;
+  }
+
+  .social-list {
+    display: none !important;
+  }
+
+  /* Лівий блок */
+  .header-left {
+    justify-self: start;
+  }
+
+  /* Правий блок (бургер) */
+  .header-right {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 0 !important;
+  }
+
+  .burger {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin-left: auto; /* на всяк */
+  }
+
+  .burger__icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+}
+.header {
+  display: block !important;
 }

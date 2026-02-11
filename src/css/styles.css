@@ -995,3 +995,6 @@ html, body {
   background: #fff !important;
 }
 
+html, body {
+  overflow-x: hidden;
+}

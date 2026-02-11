@@ -29,7 +29,7 @@ function getPagesForPagination(totalPages, currentPage) {
     return getPagesMobile3(totalPages, currentPage);
   }
 
-  // ✅ десктоп як було: до 10 кнопок
+  // ✅ desktop: до 10 кнопок (як у тебе було)
   const max = Math.min(totalPages, 10);
   return Array.from({ length: max }, (_, i) => i + 1);
 }
@@ -62,48 +62,39 @@ const refs = {
 const FILTERS = ['Muscles', 'Body parts', 'Equipment'];
 
 // ========================
-// Pagination placement (mobile only)
-// - mobile: cards -> pagination -> quote
-// - desktop: restore to original place
+// ✅ Pagination placement
+// mobile: cards -> pagination -> quote
+// desktop/tablet: pagination завжди ЗНИЗУ відповідного списку
 // ========================
 function fixPaginationPlacement() {
   if (!refs.pagination) return;
 
-  // намагаємось знайти контейнер секції
-  const container =
-    document.querySelector('.exercises__container') ||
-    refs.pagination.closest('.exercises__container') ||
-    refs.pagination.parentElement;
-
-  if (!container) return;
-
   const pagination = refs.pagination;
-
-  // маркер "де пагінація має жити на десктопі"
-  let marker = container.querySelector('[data-pagination-home]');
-  if (!marker) {
-    marker = document.createElement('span');
-    marker.dataset.paginationHome = '1';
-    marker.hidden = true;
-
-    // запам’ятовуємо поточне місце (desktop) — вставляємо маркер ПЕРЕД пагінацією
-    pagination.parentNode.insertBefore(marker, pagination);
-  }
-
   const isMobile = window.matchMedia(`(max-width: ${PAGINATION_BP}px)`).matches;
 
-  // wrapper quote-картки (звідси точно є .quote-card__text)
-  const quoteCard =
-    document.querySelector('.quote-card') ||
-    container.querySelector('.quote-card') ||
-    container.querySelector('[data-quote]');
+  // зараз ми у view exercises?
+  const isExercisesView = Boolean(homeState.selectedCategory);
 
-  if (isMobile && quoteCard) {
-    // ✅ мобілка: перед Quote
-    quoteCard.insertAdjacentElement('beforebegin', pagination);
+  if (isMobile) {
+    // ✅ mobile: перед Quote
+    const quoteCard = document.querySelector('.quote-card');
+    if (quoteCard) {
+      quoteCard.insertAdjacentElement('beforebegin', pagination);
+    }
+    return;
+  }
+
+  // ✅ desktop/tablet: завжди ВНИЗУ
+  if (isExercisesView) {
+    if (refs.exercisesList) {
+      refs.exercisesList.insertAdjacentElement('afterend', pagination);
+    } else if (refs.exercisesSection) {
+      refs.exercisesSection.insertAdjacentElement('afterend', pagination);
+    }
   } else {
-    // ✅ десктоп: повертаємо назад (після маркера)
-    marker.insertAdjacentElement('afterend', pagination);
+    if (refs.categories) {
+      refs.categories.insertAdjacentElement('afterend', pagination);
+    }
   }
 }
 
@@ -119,7 +110,11 @@ export async function initHome() {
   // ✅ початковий стейт
   homeState.activeFilter = homeState.activeFilter || 'Muscles';
   homeState.page = homeState.page || 1;
-  homeState.limit = homeState.limit || 10;
+
+  // ✅ РОЗДІЛЯЄМО ЛІМІТИ:
+  homeState.categoriesLimit = homeState.categoriesLimit || 12; // categories view
+  homeState.exercisesLimit = homeState.exercisesLimit || 10;   // exercises view
+
   homeState.selectedCategory = null;
   homeState.keyword = '';
 
@@ -129,12 +124,12 @@ export async function initHome() {
 
   bindEvents();
 
-  // щоб одразу встати правильно (особливо якщо quote/контент домальовується)
+  // щоб одразу встати правильно
   fixPaginationPlacement();
   setTimeout(fixPaginationPlacement, 0);
   setTimeout(fixPaginationPlacement, 100);
 
-  // на resize: перемістити + перерендерити кнопки (3 на моб / до 10 на десктоп)
+  // на resize: перерендерити кнопки + перемістити
   window.addEventListener('resize', () => {
     if (refs.pagination) renderPagination(lastTotalPages, homeState.page);
     fixPaginationPlacement();
@@ -163,9 +158,10 @@ async function loadAndRenderQuote() {
 // Tabs
 // ========================
 function renderTabs() {
-  refs.tabs.innerHTML = FILTERS.map(f => {
-    const active = f === homeState.activeFilter ? 'is-active' : '';
-    return `
+  refs.tabs.innerHTML = FILTERS
+    .map(f => {
+      const active = f === homeState.activeFilter ? 'is-active' : '';
+      return `
       <button
         class="exercises__tab ${active}"
         type="button"
@@ -175,7 +171,8 @@ function renderTabs() {
       >
         ${f}
       </button>`;
-  }).join('');
+    })
+    .join('');
 }
 
 /* ✅ Breadcrumb у заголовку: Exercises / abs */
@@ -202,7 +199,7 @@ function showCategoriesView() {
   // ✅ TOP SEARCH ховаємо
   if (refs.searchForm) refs.searchForm.classList.add('is-hidden');
 
-  // ✅ повертаємо "Exercises" без "/ ..."
+  // ✅ повертаємо "Exercises" без "/ ... "
   setMainTitle('');
 
   // ✅ прибираємо дубльований заголовок справа (якщо він був)
@@ -244,8 +241,12 @@ async function loadAndRenderCategories() {
   showCategoriesView();
 
   try {
-    const { activeFilter, page, limit } = homeState;
-    const data = await api.getFilters({ filter: activeFilter, page, limit });
+    const { activeFilter, page, categoriesLimit } = homeState;
+    const data = await api.getFilters({
+      filter: activeFilter,
+      page,
+      limit: categoriesLimit,
+    });
 
     const items = data.results || data.data || data || [];
 
@@ -316,17 +317,18 @@ async function loadAndRenderExercises() {
 
   showExercisesView();
 
-  const { activeFilter, selectedCategory, keyword, page, limit } = homeState;
+  const { activeFilter, selectedCategory, keyword, page, exercisesLimit } =
+    homeState;
 
   if (!refs.exercisesSection || !refs.exercisesList) return;
 
-  // ✅ Breadcrumb: "Exercises / abs"
+  // ✅ Breadcrumb
   setMainTitle(selectedCategory.name);
 
   // ✅ прибираємо дубль заголовка справа
   if (refs.exercisesTitle) refs.exercisesTitle.textContent = '';
 
-  const params = { page, limit };
+  const params = { page, limit: exercisesLimit };
   if (activeFilter === 'Muscles') params.muscles = selectedCategory.name;
   if (activeFilter === 'Body parts') params.bodypart = selectedCategory.name;
   if (activeFilter === 'Equipment') params.equipment = selectedCategory.name;
@@ -334,7 +336,9 @@ async function loadAndRenderExercises() {
 
   try {
     const data = await api.getExercises(params);
-    const items = data.results || data.data || data || [];
+
+    const itemsRaw = data.results || data.data || data || [];
+    const items = itemsRaw.slice(0, exercisesLimit); // ✅ страховка на 10
 
     if (!items.length) {
       refs.exercisesList.innerHTML = `<li style="padding:16px;">No exercises found.</li>`;
@@ -514,8 +518,8 @@ function bindEvents() {
 }
 
 // ========================
-// ✅ Pagination render (FIXED)
-// mobile: 3 pages window (123, 234, 345...)
+// ✅ Pagination render
+// mobile: 3 pages window
 // desktop: до 10
 // ========================
 function renderPagination(totalPages, currentPage) {
@@ -545,6 +549,9 @@ function renderPagination(totalPages, currentPage) {
     .join('');
 
   refs.pagination.innerHTML = buttons;
+
+  // ✅ після перемальовки — ще раз поставити в правильне місце
+  fixPaginationPlacement();
 }
 
 // ========================
@@ -558,6 +565,7 @@ function escapeHtml(str) {
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
 }
+
 function escapeAttr(str) {
   return escapeHtml(str).replaceAll('`', '&#096;');
 }

@@ -1,5 +1,6 @@
 import { api } from '../api/yourEnergyApi.js';
 import { openRatingModal } from './rating-modal.js';
+
 const PAGINATION_BP = 600; // якщо у тебе 768 — зміни тут
 
 function fixPaginationPlacement() {
@@ -20,17 +21,14 @@ function fixPaginationPlacement() {
 
   const isMobile = window.matchMedia(`(max-width: ${PAGINATION_BP}px)`).matches;
 
-  // знайди quote (підстав свій клас якщо інший)
   const quote =
     container.querySelector('.quote-card') ||
     container.querySelector('.quote') ||
     container.querySelector('[data-quote]');
 
   if (isMobile && quote) {
-    // ✅ мобілка: після карток, але перед Quote
     quote.insertAdjacentElement('beforebegin', pagination);
   } else {
-    // ✅ десктоп: повертаємо назад (після маркера)
     marker.insertAdjacentElement('afterend', pagination);
   }
 }
@@ -38,7 +36,6 @@ function fixPaginationPlacement() {
 // 1) при старті
 document.addEventListener('DOMContentLoaded', () => {
   fixPaginationPlacement();
-  // якщо контент домальовується після fetch
   setTimeout(fixPaginationPlacement, 0);
   setTimeout(fixPaginationPlacement, 100);
 });
@@ -47,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('resize', () => {
   fixPaginationPlacement();
 
-  // щоб при зміні ширини (моб/десктоп) пагінація перерендерилась
   if (paginationState) {
     renderPagination(
       paginationState.totalPages,
@@ -78,14 +74,9 @@ function buildPages(totalPages, currentPage) {
   const isMobile = window.matchMedia(`(max-width: ${PAGINATION_BP}px)`).matches;
   return isMobile
     ? getMobileWindow3(totalPages, currentPage)
-    : Array.from({ length: totalPages }, (_, i) => i + 1); // десктоп: як було (всі сторінки)
+    : Array.from({ length: totalPages }, (_, i) => i + 1);
 }
 
-/**
- * Рендер пагінації:
- * - мобілка: тільки 3 кнопки "вікном" (123, 234, 345...)
- * - десктоп: всі сторінки (можеш потім теж обмежити)
- */
 export function renderPagination(totalPages, currentPage, onPageChange) {
   const root = document.querySelector('.pagination');
   if (!root) return;
@@ -118,7 +109,6 @@ export function renderPagination(totalPages, currentPage, onPageChange) {
       const next = Number(btn.dataset.page);
       if (!Number.isFinite(next) || next === currentPage) return;
 
-      // callback у твою логіку (fetch/render)
       if (paginationState?.onPageChange) paginationState.onPageChange(next);
     });
   }
@@ -135,6 +125,10 @@ const cache = new Map();
 
 let currentExerciseId = null;
 let currentExerciseData = null;
+
+// ✅ для повернення модалки після рейтингу
+let wasSuspendedForRating = false;
+let prevExerciseModalDisplay = '';
 
 // ========================
 // Favorites helpers
@@ -180,23 +174,8 @@ function getModalEls() {
 }
 
 // ========================
-// FORCE hide helpers (fix stacking modals)
+// Rating modal helper
 // ========================
-function forceHideExerciseModal() {
-  const { modal, content } = getModalEls();
-  if (!modal) return;
-
-  modal.classList.add('is-hidden');
-  modal.hidden = true; // 🔥 важливо, щоб точно пропав
-  modal.setAttribute('aria-hidden', 'true');
-
-  if (content) content.innerHTML = '';
-
-  // якщо це був єдиний відкритий модал — повертаємо скрол
-  document.body.style.overflow = '';
-  document.body.style.paddingRight = '';
-}
-
 function forceHideRatingModal() {
   const rating = document.querySelector('#rating-modal');
   if (!rating) return;
@@ -204,6 +183,53 @@ function forceHideRatingModal() {
   rating.classList.add('is-hidden');
   rating.hidden = true;
   rating.setAttribute('aria-hidden', 'true');
+}
+
+// ========================
+// ✅ Suspend / Resume (exercise <-> rating)
+// ========================
+export function suspendExerciseModalForRating() {
+  const { modal } = getModalEls();
+  if (!modal) return false;
+
+  const isOpen = !modal.hidden && !modal.classList.contains('is-hidden');
+  if (!isOpen) return false;
+
+  wasSuspendedForRating = true;
+
+  // ✅ прибрати з рендера повністю (щоб не було “позаду”)
+  prevExerciseModalDisplay = modal.style.display || '';
+  modal.style.display = 'none';
+
+  // семантика
+  modal.classList.add('is-hidden');
+  modal.hidden = true;
+  modal.setAttribute('aria-hidden', 'true');
+
+  // ESC для exercise — вимикаємо
+  document.removeEventListener('keydown', onEsc);
+
+  return true;
+}
+
+export function resumeExerciseModalAfterRating() {
+  if (!wasSuspendedForRating) return false;
+
+  const { modal } = getModalEls();
+  if (!modal) return false;
+
+  // ✅ повернути назад
+  modal.style.display = prevExerciseModalDisplay;
+
+  modal.hidden = false;
+  modal.classList.remove('is-hidden');
+  modal.setAttribute('aria-hidden', 'false');
+
+  document.addEventListener('keydown', onEsc);
+
+  wasSuspendedForRating = false;
+  prevExerciseModalDisplay = '';
+  return true;
 }
 
 // ========================
@@ -217,15 +243,15 @@ function openModal() {
   const { modal } = getModalEls();
   if (!modal) return;
 
-  // 🔥 якщо раптом відкритий rating — ховаємо його
   forceHideRatingModal();
 
   const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-  modal.hidden = false; // 🔥 повертаємо назад
+  modal.hidden = false;
   modal.classList.remove('is-hidden');
   modal.setAttribute('aria-hidden', 'false');
 
+  // ✅ lock scroll
   document.body.style.overflow = 'hidden';
   document.body.style.paddingRight = `${scrollBarWidth}px`;
 
@@ -237,8 +263,11 @@ export function closeModal() {
   if (!modal) return;
 
   modal.classList.add('is-hidden');
-  modal.hidden = true; // 🔥 важливо
+  modal.hidden = true;
   modal.setAttribute('aria-hidden', 'true');
+
+  // ✅ повністю повертаємо display, якщо було "paused"
+  modal.style.display = prevExerciseModalDisplay;
 
   if (content) content.innerHTML = '';
 
@@ -249,6 +278,9 @@ export function closeModal() {
 
   currentExerciseId = null;
   currentExerciseData = null;
+
+  wasSuspendedForRating = false;
+  prevExerciseModalDisplay = '';
 }
 
 // ========================
@@ -392,14 +424,8 @@ function bindModalEventsOnce() {
       const exerciseId = ratingBtn.dataset.exerciseId;
       if (!exerciseId) return console.error('Give a rating: missing data-exercise-id');
 
-      // 🔥 ЗАЛІЗНО: ховаємо exercise modal перед відкриттям rating
-      closeModal();
-
-      // якщо десь залишився видимим — приб’ємо
-      forceHideExerciseModal();
-
-      // 🔥 відкриваємо рейтинг
-      requestAnimationFrame(() => openRatingModal(exerciseId));
+      suspendExerciseModalForRating();
+      setTimeout(() => openRatingModal(exerciseId), 0);
       return;
     }
 
@@ -454,7 +480,6 @@ export async function openExerciseModal(exerciseId) {
   try {
     currentExerciseId = exerciseId;
 
-    // 🔥 якщо відкритий rating — приб’ємо його
     forceHideRatingModal();
 
     openModal();
@@ -481,3 +506,8 @@ export async function openExerciseModal(exerciseId) {
     isLoading = false;
   }
 }
+
+// ✅ коли закрили rating — повертаємо exercise
+window.addEventListener('rating:closed', () => {
+  resumeExerciseModalAfterRating();
+});

@@ -1,7 +1,8 @@
 export const homeState = {
-  activeFilter: 'Muscles', // default по ТЗ
+  activeFilter: 'Muscles',
   page: 1,
-  limit: 10,
-  selectedCategory: null, // { name, filter }
+  selectedCategory: null,
   keyword: '',
+  categoriesLimit: 12,
+  exercisesLimit: 10, // ✅ ВАЖЛИВО
 };

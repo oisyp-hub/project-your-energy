@@ -1,83 +1,79 @@
 <header class="header">
-  <div class="header-left">
-    <a href="./index.html" class="logo-link">
-      <picture>
-        <source type="image/avif" srcset="img/logo.avif" />
-        <source type="image/webp" srcset="img/logo.webp" />
-        <img
-          src="img/logo.png"
-          alt="Your Energy logo"
-          width="120"
-          height="24"
-          decoding="async"
-          loading="eager"
-        />
-      </picture>
-    </a>
-  </div>
+  <div class="header__container">
+    <div class="header-left">
+      <a href="./index.html" class="logo-link">
+        <picture>
+          <source type="image/avif" srcset="img/logo.avif" />
+          <source type="image/webp" srcset="img/logo.webp" />
+          <img
+            src="img/logo.svg"
+            alt="Your Energy logo"
+            width="120"
+            height="24"
+            decoding="async"
+            loading="eager"
+          />
+        </picture>
+      </a>
+    </div>
 
-  <nav class="header-center">
-    <a class="nav-item" href="./index.html" data-nav="home">Home</a>
-    <a class="nav-item" href="./page-2.html" data-nav="favorites">Favorites</a>
-  </nav>
+    <nav class="header-center">
+      <a class="nav-item active" href="./index.html" data-nav="home">Home</a>
+      <a class="nav-item" href="./page-2.html" data-nav="favorites">Favorites</a>
+    </nav>
 
-  <div class="header-right">
-    <a class="social-btn" href="#" aria-label="Facebook">
-      <picture>
-        <source type="image/avif" srcset="img/fb.avif" />
-        <source type="image/webp" srcset="img/fb.webp" />
-        <img
-          src="img/fb.png"
-          alt=""
-          width="24"
-          height="24"
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
-    </a>
+    <div class="header-right">
+      <ul class="social-list" aria-label="Social media">
+        <li class="social-list__item">
+          <a
+            class="social-list__link"
+            href="https://www.facebook.com/goITclub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <img src="./img/facebook.svg" alt="" width="32" height="32" />
+          </a>
+        </li>
 
-    <a class="social-btn" href="#" aria-label="Instagram">
-      <picture>
-        <source type="image/avif" srcset="img/ins.avif" />
-        <source type="image/webp" srcset="img/ins.webp" />
-        <img
-          src="img/ins.png"
-          alt=""
-          width="24"
-          height="24"
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
-    </a>
+        <li class="social-list__item">
+          <a
+            class="social-list__link"
+            href="https://www.instagram.com/goitclub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <img src="./img/inst.svg" alt="" width="32" height="32" />
+          </a>
+        </li>
 
-    <a class="social-btn" href="#" aria-label="YouTube">
-      <picture>
-        <source type="image/avif" srcset="img/you.avif" />
-        <source type="image/webp" srcset="img/you.webp" />
-        <img
-          src="img/you.png"
-          alt=""
-          width="24"
-          height="24"
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
-    </a>
+        <li class="social-list__item">
+          <a
+            class="social-list__link"
+            href="https://www.youtube.com/@GoIT"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+          >
+            <img src="./img/youtube.svg" alt="" width="32" height="32" />
+          </a>
+        </li>
+      </ul>
 
-    <!-- ✅ Burger button (mobile) -->
-    <button class="burger" type="button" aria-label="Menu" data-menu-open>
-      <svg class="burger__icon" width="32" height="24" viewBox="0 0 32 24" aria-hidden="true">
-        <rect x="0" y="2"  width="32" height="3" rx="1.5"></rect>
-        <rect x="0" y="10.5" width="32" height="3" rx="1.5"></rect>
-        <rect x="0" y="19" width="32" height="3" rx="1.5"></rect>
-      </svg>
-    </button>
-
+      <!-- Burger (важливо: data-menu-open як було) -->
+      <button class="burger" type="button" aria-label="Menu" data-menu-open aria-expanded="false">
+        <svg class="burger__icon" width="32" height="24" aria-hidden="true">
+          <rect y="2" width="32" height="3" rx="1.5"></rect>
+          <rect y="10.5" width="32" height="3" rx="1.5"></rect>
+          <rect y="19" width="32" height="3" rx="1.5"></rect>
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
+
+<!-- ✅ ПОВЕРНУЛИ МЕНЮ ЯК БУЛО (це і є ключ) -->
 <div class="mobile-menu" data-mobile-menu aria-hidden="true">
   <div class="mobile-menu__backdrop" data-menu-close></div>
 
@@ -85,21 +81,22 @@
     <button class="mobile-menu__close" type="button" aria-label="Close menu" data-menu-close>✕</button>
 
     <nav class="mobile-menu__nav">
-      <a class="mobile-menu__link" href="./index.html">Home</a>
-      <a class="mobile-menu__link" href="./page-2.html">Favorites</a>
+      <a class="mobile-menu__link" href="./index.html" data-menu-close>Home</a>
+      <a class="mobile-menu__link" href="./page-2.html" data-menu-close>Favorites</a>
     </nav>
 
     <div class="mobile-menu__social">
-      <a class="mobile-menu__social-btn" href="#" aria-label="Facebook">
-        <img src="img/iconwh1.png" alt="" width="24" height="24">
+      <a class="mobile-menu__social-btn" href="https://www.facebook.com/goITclub/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <img src="./img/facebook.svg" alt="" width="32" height="32" />
       </a>
-      <a class="mobile-menu__social-btn" href="#" aria-label="Instagram">
-        <img src="img/iconwh2.png" alt="" width="24" height="24">
+
+      <a class="mobile-menu__social-btn" href="https://www.instagram.com/goitclub/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <img src="./img/inst.svg" alt="" width="32" height="32" />
       </a>
-      <a class="mobile-menu__social-btn" href="#" aria-label="YouTube">
-        <img src="img/iconwh3.png" alt="" width="24" height="24">
+
+      <a class="mobile-menu__social-btn" href="https://www.youtube.com/@GoIT" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <img src="./img/youtube.svg" alt="" width="32" height="32" />
       </a>
     </div>
   </aside>
 </div>
-

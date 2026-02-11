@@ -316,7 +316,7 @@
 @media (min-width: 1440px) {
   .categories {
     width: 100%;
-    grid-template-columns: repeat(3, 290px);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     justify-content: start;
     align-content: start;
@@ -541,9 +541,6 @@
   justify-content: center;
   gap: 8px;
 
-  width: fit-content;
-  margin: 24px auto 48px;
-  padding: 0;
 }
 
 .pagination__btn {
@@ -562,12 +559,8 @@
 /* desktop: center under RIGHT column */
 @media (min-width: 1440px) {
   .pagination {
-    width: calc(100% - 444px - 32px); /* right column width */
-    margin-left: calc(444px + 32px);  /* shift after aside + gap */
     margin-right: 0;
-
-    justify-content: center;
-    margin-top: 24px;
+    margin-top: 32px;
     margin-bottom: 120px;
   }
 }
@@ -1156,7 +1149,7 @@
 
   /* висота картки як у макеті */
   .exercise-card {
-    min-height: 141px;
+    max-height: 141px;
   }
 }
 
@@ -1164,4 +1157,351 @@
   .container.exercises__container {
     max-width: 1400px;
   }
+}
+.exercises__right,
+.categories {
+  min-width: 0;
+}
+.exercise-card__meta{
+  display: flex;          /* 🔥 замість grid */
+  gap: 6px;
+  flex-wrap: nowrap;      /* 🔥 тільки один рядок */
+  align-items: baseline;
+  min-width: 0;
+  overflow: hidden;       /* щоб не роздувало картку */
+}
+
+.exercise-card__meta > span {
+  white-space: nowrap; /* кожен шматок в один рядок */
+}
+.exercise-card__meta {
+  display: flex;        /* було grid -> робимо flex */
+  gap: 12px;            /* відстань між "Burned / Body / Target" */
+  align-items: center;
+  flex-wrap: nowrap;    /* все в один рядок */
+  white-space: nowrap;  /* не переносити */
+  overflow: hidden;     /* щоб не роздувало картку */
+  min-width: 0;
+}
+
+.exercise-card__meta > span {
+  flex: 0 0 auto;       /* кожен шматок своєї ширини */
+}
+.exercise-card__meta {
+  display: flex;          /* один рядок */
+  gap: 12px;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* робимо ВСІ значення жирними */
+.exercise-card__meta b,
+.exercise-card__meta > span:first-child {
+  font-weight: 600;
+}
+
+/* щоб flex міг стискатися */
+.exercise-card__meta > span {
+  min-width: 0;
+}
+/* ===== MOBILE: search + tabs under title ===== */
+@media (max-width: 600px) {
+  /* ✅ контейнер верхньої частини секції Exercises */
+  .exercises__head,
+  .exercises__header,
+  .exercises__top {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  /* ✅ Заголовок перший */
+  .exercises__title {
+    order: 1;
+  }
+
+  /* ✅ Пошук другий */
+  #top-search-form {
+    order: 2;
+    width: 100%;
+  }
+
+  #top-search-form input,
+  #top-search-input {
+    width: 100%;
+  }
+
+  /* ✅ Tabs треті */
+  .exercises__tabs {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;          /* якщо не влазить */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* щоб таби не ламались криво */
+  .exercises__tabs > * {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 600px) {
+  /* 1) контейнер хедера секції (де живе і рядок пошуку, і заголовок) */
+  .exercises__container,
+  .exercises,
+  .exercises__section {
+    /* нічого тут не треба, просто “страховка” */
+  }
+
+  /* 2) Блок, де в тебе зараз пошук + таби ОДНИМ РЯДКОМ
+     ⚠️ Підстав правильний селектор з DevTools:
+     найчастіше це .exercises__controls або .exercises__top-row */
+  .exercises__controls,
+  .exercises__top-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    order: 2;
+    width: 100%;
+  }
+
+  /* 3) Заголовок має бути ПЕРШИМ */
+  .exercises__title {
+    order: 1;
+  }
+
+  /* 4) Пошук окремо (інпут + кнопка) в один ряд */
+  #top-search-form {
+    order: 1;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  }
+
+  #top-search-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* 5) Tabs нижче пошуку */
+  .exercises__tabs {
+    order: 2;
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .exercises__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .exercises__tabs > * {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 600px) {
+  /* 1) Заголовок */
+  .exercises__title {
+    margin-bottom: 12px;
+  }
+
+  /* 2) Пошук: робимо один ряд, але без кнопки */
+  #top-search-form {
+    position: relative;
+    width: 100%;
+    margin: 0 0 12px;
+  }
+
+  #top-search-input {
+    width: 100%;
+    padding-right: 44px; /* місце під іконку */
+  }
+
+  /* Ховаємо кнопку "Search" як в макеті */
+  #top-search-form button[type="submit"],
+  #top-search-form .search-btn,
+  #top-search-form .btn-search {
+    display: none !important;
+  }
+
+  /* Малюємо іконку лупи справа всередині input */
+  #top-search-form::after {
+    content: "";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+    pointer-events: none;
+    background: no-repeat center / contain
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z' stroke='%23111111' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17.5 17.5L13.875 13.875' stroke='%23111111' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  /* 3) Таби нижче, як в макеті */
+  .exercises__tabs {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    margin: 0 0 16px;
+  }
+
+  /* якщо таби вилазять — дозволь скрол */
+  .exercises__tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .exercises__tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .exercises__tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  #exercises-list {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0 16px;
+  max-width: 100%;
+  }
+
+  .exercise-card {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  /* Заголовок "Exercises / ..." */
+  .exercises__title {
+    font-size: 40px;
+    line-height: 1.1;
+    margin: 0 0 20px;
+  }
+
+  .exercises__subtitle {
+    font-size: 32px;
+    line-height: 1.1;
+    color: #9a9a9a;
+  }
+
+  /* Пошук */
+  .search {
+    margin: 16px 0 18px;
+  }
+
+  .search__input {
+    width: 100%;
+    height: 64px;
+    padding: 0 56px 0 22px; /* зліва текст, справа іконка */
+    border: 2px solid #1b1b1b;
+    border-radius: 999px;
+    font-size: 18px;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .search__icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Табчики */
+  .tabs {
+    margin-top: 6px;
+  }
+
+  .tabs__item {
+    font-size: 18px;
+  }
+
+  .tabs__item--active::after {
+    content: "";
+    display: block;
+    height: 4px;
+    border-radius: 999px;
+    margin-top: 10px;
+  }
+}
+.exercises__grid {
+  width: 100%;
+}
+
+.exercise-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .exercises__grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .exercises__aside,
+  .exercises__right {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+@media (max-width: 600px) {
+  #exercises-list {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #exercises-list > li {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 768px) {
+
+  /* 1 колонка */
+  .categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* картка на всю ширину */
+  .category-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* кнопка всередині */
+  .category-card__btn {
+    width: 100%;
+  }
+
+  /* саме зображення */
+  .category-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
 }

@@ -1523,3 +1523,66 @@ html, body {
 #exercise-modal .modal-exercise__media {
   background: #fff !important;
 }
+@media (max-width: 600px) {
+  /* 1) Контейнер секції — без “двох колонок” */
+  .exercises__grid {
+    display: block;
+  width: 100%;
+  }
+
+  /* 2) Ховаємо aside (ліва колонка) */
+  .exercises__aside {
+    display: none;
+  }
+
+  /* 3) Права колонка займає всю ширину */
+  .exercises__right {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* 4) Список карток без дефолтних відступів ul */
+  #exercises-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* 5) Кожна картка строго по ширині контейнера */
+  #exercises-list > li,
+  .exercise-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* 6) Щоб довгі назви не розпирали */
+  .exercise-card__title {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
+@media (max-width: 600px) {
+  /* список/контейнер карток */
+  #exercises-list {
+    display: grid;
+    grid-template-columns: 1fr;  
+  gap: 16px;
+    padding: 0 16px;
+    margin: 0;
+    list-style: none;
+  }
+
+  /* кожна картка строго по контейнеру */
+  #exercises-list > li,
+  .exercise-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+}
