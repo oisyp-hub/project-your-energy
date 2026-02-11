@@ -1570,7 +1570,7 @@ html, body {
   /* список/контейнер карток */
   #exercises-list {
     display: grid;
-    grid-template-columns: 1fr;  
+    grid-template-columns: 1fr;
   gap: 16px;
     padding: 0 16px;
     margin: 0;
@@ -1586,3 +1586,25 @@ html, body {
     box-sizing: border-box;
   }
 }
+.rating-toast {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  opacity: 0;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  z-index: 20000;
+  transition: opacity 220ms ease, transform 220ms ease;
+  pointer-events: none;
+}
+
+.rating-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.rating-toast--error { background: #b00020; }
+.rating-toast--success { background: #111; }
