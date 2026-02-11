@@ -1661,3 +1661,24 @@ html, body {
     box-sizing: border-box;
 }
 
+@media screen and (max-width: 600px) {
+
+  .hero_container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero_content {
+    order: 1;
+  }
+
+  .hero_card {
+    order: 2;
+  }
+
+  .hero__card-tags {
+    order: 3;
+    margin-top: 16px;
+  }
+
+}
