@@ -772,7 +772,9 @@
 .modal-exercise__actions {
   margin-top: auto;   /* 🔥 головне */
 }
-
+.modal-exercise__title {
+  margin-top: 16px;
+}
 
 }
 
