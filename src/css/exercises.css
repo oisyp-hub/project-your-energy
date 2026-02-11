@@ -1505,33 +1505,18 @@
   }
 
 }
-/* name row: title + Start stay in one line layout */
-.exercise-card__name-row{
+/* meta row: allow wrapping */
+.exercise-card__meta{
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-/* title: 2 lines + ellipsis */
-.exercise-card__name-row h3,
-.exercise-card__name-row .exercise-card__title{
-  flex: 1 1 auto;
+  flex-wrap: wrap;      /* 🔥 дозволяє перенос */
+  gap: 6px 12px;        /* row/col gap */
   min-width: 0;
-
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-
-  word-break: break-word;
-  line-height: 1.2;
 }
 
-/* Start button doesn't shrink */
-.exercise-card__name-row .exercise-card__start,
-.exercise-card__name-row a,
-.exercise-card__name-row button{
-  flex: 0 0 auto;
-  white-space: nowrap;
+/* each meta item shouldn't force long line */
+.exercise-card__meta > span{
+  min-width: 0;
+  white-space: nowrap;  /* тримає кожен чіп в один рядок */
 }
+
 
