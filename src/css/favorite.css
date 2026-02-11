@@ -1623,19 +1623,32 @@ html, body {
 
 .rating-toast--error { background: #b00020; }
 .rating-toast--success { background: #111; }
+}
+/* 🔹 Правильний flex для правої колонки */
+.modal-exercise__info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+/* 🔹 Desktop — кнопки вниз */
+@media (min-width: 601px) {
+  .modal-exercise__actions {
+    margin-top: auto;
+  }
+}
+
+/* 🔹 Mobile — просто відступ */
 @media (max-width: 600px) {
   .modal-exercise__actions {
-    flex-direction: column; 
-      margin-top: 32px !important;
-    align-items: stretch;     /* на всю ширину */
+    margin-top: 32px;
+    flex-direction: column;
     gap: 12px;
   }
 
   .modal-exercise__actions .btn {
-    width: 100%;              /* кнопки на всю ширину */
+    width: 100%;
   }
 }
-.modal-exercise__actions {
-  margin-top: auto;   /* 🔥 головне */
-}
-}
+
