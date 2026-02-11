@@ -1551,5 +1551,35 @@
 .exercise-card .exercise-card__meta > span:last-child{
   flex-basis: 100% !important; /* Target на новий рядок */
 }
+/* === META like Figma (one row on desktop) === */
+@media (min-width: 601px) {
+  .exercise-card__meta {
+    display: flex;
+    flex-wrap: nowrap;          /* 🔥 не переносимо */
+    gap: 16px;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .exercise-card__meta > span {
+    min-width: 0;
+    white-space: nowrap;        /* 🔥 один рядок */
+    overflow: hidden;
+    text-overflow: ellipsis;    /* якщо не влазить — ... */
+  }
+
+  /* якщо в тебе є правило, що останній span робить 100% ширини — гасимо */
+  .exercise-card__meta > span:last-child {
+    flex-basis: auto !important;
+  }
+}
+
+/* === MOBILE (до 600) можеш залишити як зараз (2 рядки) === */
+@media (max-width: 600px) {
+  .exercise-card__meta {
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+}
 
 
