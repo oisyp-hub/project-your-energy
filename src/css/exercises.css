@@ -1633,5 +1633,27 @@
     text-overflow: ellipsis !important;
   }
 }
+/* meta завжди в 1 рядок як у макеті */
+.exercise-card__meta{
+  display: grid !important;
+  grid-template-columns: auto auto minmax(0, 1fr) !important;
+  column-gap: 16px !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+}
+
+.exercise-card__meta > span{
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* mobile (<=600): якщо треба — можна зробити трохи менші gap/size */
+@media (max-width: 600px){
+  .exercise-card__meta{
+    column-gap: 12px !important;
+    font-size: 12px !important;
+  }
+}
 
 
