@@ -1004,3 +1004,16 @@ html, body {
 .exercise-card__meta span {
   white-space: nowrap;
 }
+.exercise-card__meta {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 16px !important;
+  align-items: center !important;
+}
+
+/* щоб всі три куски не ламались */
+.exercise-card__meta > span {
+  white-space: nowrap !important;
+  flex: 0 0 auto !important;
+}
+
