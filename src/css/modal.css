@@ -716,7 +716,7 @@
 .rating-toast--error {
   background: #b00020;
 }
-@media (max-width: 480px) {
+@media (max-width: 600px) {
 
   .modal.modal-exercise {
     width: 100%;
