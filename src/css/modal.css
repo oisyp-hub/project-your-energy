@@ -757,7 +757,7 @@
     width: 100%;
   }
 }
-@media (max-width: 484px) {
+@media (max-width: 486px) {
   .modal-exercise__actions {
     flex-direction: column;   /* 🔥 вертикально */
     align-items: stretch;     /* на всю ширину */
