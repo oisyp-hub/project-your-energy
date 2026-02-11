@@ -1789,3 +1789,38 @@
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
+/* === FIX: meta в 1 рядок + target з ... (без розриву "Targ et") === */
+.exercise-card__meta{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px 16px;
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* кожен елемент meta не переносимо */
+.exercise-card__meta > span{
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* target займає залишок ширини і ріжеться */
+.exercise-card__meta > span:last-child{
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* ріжемо саме значення */
+.exercise-card__meta > span:last-child b{
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
