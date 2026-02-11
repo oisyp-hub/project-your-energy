@@ -1650,3 +1650,11 @@
   flex-wrap: nowrap;
 }
 
+.exercise-card__meta {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.exercise-card__meta span {
+  white-space: nowrap;
+}
