@@ -759,7 +759,8 @@
 }
 @media (max-width: 600px) {
   .modal-exercise__actions {
-    flex-direction: column;   /* 🔥 вертикально */
+    flex-direction: column; 
+      margin-top: 24px;/* 🔥 вертикально */
     align-items: stretch;     /* на всю ширину */
     gap: 12px;
   }
