@@ -1538,9 +1538,6 @@
   line-height: 1.2 !important;
 }
 
-.exercise-card .exercise-card__meta > span:last-child{
-  flex-basis: 100% !important; /* Target на новий рядок */
-}
 /* === META like Figma (one row on desktop) === */
 @media (min-width: 601px) {
   .exercise-card__meta {
