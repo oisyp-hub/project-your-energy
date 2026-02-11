@@ -1661,22 +1661,23 @@ html, body {
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 600px) {
-
-  .hero_card {
+@media (max-width: 600px) {
+  .hero__container{
     display: flex;
     flex-direction: column;
   }
 
-  .hero_card picture {
-    order: 1;
+  .hero__content{
+    order: 1 !important;
   }
 
-  .hero__card-tags {
-    order: 2;
-    margin-top: 16px;
-    justify-content: center;
+  .hero__card{
+    order: 2 !important;
   }
 
+  ul.hero__card-tags{
+    order: 3 !important;
+    margin-top: 16px !important;
+  }
 }
 
