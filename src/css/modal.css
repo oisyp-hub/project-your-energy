@@ -821,5 +821,21 @@
     max-height: calc(100vh - 40px);
     overflow: auto;        /* 🔥 замість hidden */
   }
+
+  .modal-exercise__info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.modal-exercise__desc {
+  flex: 1 1 auto;   /* 🔥 текст займає простір */
+}
+
+.modal-exercise__actions {
+  margin-top: 16px; /* звичайний відступ */
+}
+
 }
 
