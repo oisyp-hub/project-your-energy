@@ -1505,14 +1505,33 @@
   }
 
 }
-/* title in cards: 2 lines + ... */
-.exercise-card__title {
+/* name row: title + Start stay in one line layout */
+.exercise-card__name-row{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* title: 2 lines + ellipsis */
+.exercise-card__name-row h3,
+.exercise-card__name-row .exercise-card__title{
+  flex: 1 1 auto;
+  min-width: 0;
+
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;  /* 🔥 максимум 2 рядки */
+  -webkit-line-clamp: 2;
   overflow: hidden;
 
-  line-height: 1.25;
-  max-height: calc(1.25em * 2);
   word-break: break-word;
+  line-height: 1.2;
 }
+
+/* Start button doesn't shrink */
+.exercise-card__name-row .exercise-card__start,
+.exercise-card__name-row a,
+.exercise-card__name-row button{
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
