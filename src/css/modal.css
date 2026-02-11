@@ -814,4 +814,12 @@
     height: 48px;
   }
 }
+/* коли екран низький — дозволяємо скрол в модалці */
+@media (max-height: 600px) {
+  .modal.modal-exercise {
+    height: auto;
+    max-height: calc(100vh - 40px);
+    overflow: auto;        /* 🔥 замість hidden */
+  }
+}
 
