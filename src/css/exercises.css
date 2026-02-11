@@ -1646,4 +1646,7 @@
   }
 }
 
+.exercise-card__meta {
+  flex-wrap: nowrap;
+}
 
