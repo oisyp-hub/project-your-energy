@@ -767,7 +767,36 @@
   .modal-exercise__actions .btn {
     width: 100%;              /* кнопки на всю ширину */
   }
-}.modal-exercise__actions {
+}
+.modal-exercise__actions {
   margin-top: auto;   /* 🔥 головне */
+}
+/* ✅ FORCE buttons to bottom (desktop modal) */
+.modal.modal-exercise {
+  height: 486px !important;      /* щоб був простір вниз */
+}
+
+.modal-exercise__content {
+  height: 100% !important;
+  align-items: stretch !important; /* щоб колонки розтягувались */
+}
+
+.modal-exercise__info {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+}
+
+/* опис хай бере “вільний” простір */
+.modal-exercise__desc {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+}
+
+/* кнопки вниз */
+.modal-exercise__actions {
+  margin-top: auto !important;
+  padding-top: 16px; /* щоб не прилипали до тексту */
 }
 
