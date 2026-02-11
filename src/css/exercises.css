@@ -1684,3 +1684,37 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* ✅ FIX: Target не падає вниз, а обрізається "..." */
+.exercise-card__meta {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+
+.exercise-card__meta > span {
+  white-space: nowrap !important;
+  flex: 0 0 auto !important;
+}
+
+/* останній span = Target */
+.exercise-card__meta > span:last-child {
+  display: flex !important;          /* 🔥 label + value в один ряд */
+  align-items: baseline !important;
+  gap: 4px !important;
+
+  flex: 1 1 auto !important;         /* займає залишок */
+  min-width: 0 !important;           /* 🔥 дозволяє стискатись */
+  overflow: hidden !important;
+}
+
+/* саме значення (abductors) */
+.exercise-card__meta > span:last-child b {
+  display: block !important;         /* щоб flex-ellipsis працював стабільно */
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; /* ... */
+}
