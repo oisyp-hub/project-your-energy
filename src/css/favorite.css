@@ -1623,3 +1623,19 @@ html, body {
 
 .rating-toast--error { background: #b00020; }
 .rating-toast--success { background: #111; }
+@media (max-width: 600px) {
+  .modal-exercise__actions {
+    flex-direction: column; 
+      margin-top: 32px !important;
+    align-items: stretch;     /* на всю ширину */
+    gap: 12px;
+  }
+
+  .modal-exercise__actions .btn {
+    width: 100%;              /* кнопки на всю ширину */
+  }
+}
+.modal-exercise__actions {
+  margin-top: auto;   /* 🔥 головне */
+}
+}
