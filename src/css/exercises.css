@@ -1526,8 +1526,6 @@
 }
 /* FIX meta overflow (force) */
 .exercise-card .exercise-card__meta{
-  display: flex !important;
-  flex-wrap: wrap !important;
   gap: 6px 12px !important;
   min-width: 0 !important;
 }
