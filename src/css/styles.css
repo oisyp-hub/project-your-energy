@@ -996,3 +996,11 @@ html, body {
 html, body {
   overflow-x: hidden;
 }
+.exercise-card__meta {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.exercise-card__meta span {
+  white-space: nowrap;
+}
